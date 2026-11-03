@@ -49,3 +49,41 @@ def test_word_boundaries(matcher):
 def test_name_map_is_case_insensitive_and_covers_aliases():
     m = name_map_from(load_brands())
     assert m["wilfred"] == "Aritzia" and m["aritzia"] == "Aritzia" and m["zara"] == "Zara"
+
+
+def test_longest_match_wins_over_shorter_brand(matcher):
+    ms = extract_dictionary("Try Nordstrom Rack, or Nordstrom itself.", matcher)
+    assert [(m.brand, m.count) for m in ms] == [("Nordstrom Rack", 1), ("Nordstrom", 1)]
+
+
+def test_curly_apostrophes_are_normalised(matcher):
+    assert names("Levi\u2019s and Macy\u2019s", matcher) == ["Levi's", "Macy's"]
+
+
+def test_extractor_falls_back_to_second_model(tmp_path):
+    import json
+
+    from brandvis.extract import process
+    from brandvis.providers import ProviderError
+
+    raw = tmp_path / "raw.jsonl"
+    raw.write_text(json.dumps({"batch": "b", "prompt_id": "p1", "prompt": "q", "intent": "discovery", "topic": "t",
+                               "surface": "s", "model": "m", "grounded": False, "run_index": 0, "collected_at": "x",
+                               "sources": [], "search_queries": [], "text": "Try Zara and Aritzia."}) + "\n")
+
+    class Primary:
+        def generate_json(self, prompt, schema):
+            raise ProviderError("502")
+
+    class Fallback:
+        def generate_json(self, prompt, schema):
+            return {"brands": [{"name": "Zara", "sentiment": "positive", "recommended": True}]}
+
+    def factory(provider, model, **kw):
+        return Primary() if model == "gemini-2.5-flash-lite" else Fallback()
+
+    out = tmp_path / "out.jsonl"
+    stats = process(raw, out, provider_factory=factory, rpm=1000, workers=1, log=lambda *_: None)
+    rec = json.loads(out.read_text())
+    assert stats["llm_failed"] == 0 and rec["llm_model"] == "gemini-2.5-flash" and rec["llm_mentions"][0]["brand"] == "Zara"
+    assert [m["brand"] for m in rec["dict_mentions"]] == ["Zara", "Aritzia"]

@@ -77,3 +77,28 @@ brands:
   - {name: Revolve, type: retailer, aliases: [], cs: [Revolve]}
   - {name: Hudson's Bay, type: retailer, aliases: ["Hudson's Bay"], cs: ["The Bay"]}
   - {name: Holt Renfrew, type: retailer, aliases: ["Holt Renfrew"]}
+  # ---- added after the first collection: most frequent brands the LLM extractor found that the dictionary lacked ----
+  - {name: Oak + Fort, aliases: ["Oak + Fort", "Oak and Fort"]}
+  - {name: Kotn, aliases: [Kotn]}
+  - {name: Dynamite, aliases: [Dynamite]}
+  - {name: Pact, aliases: [], cs: [Pact]}
+  - {name: Lulus, aliases: [Lulus, "Lulu's"]}
+  - {name: Boden, aliases: [Boden]}
+  - {name: The Frankie Shop, aliases: ["The Frankie Shop", "Frankie Shop"]}
+  - {name: Naadam, aliases: [Naadam]}
+  - {name: Levi's, aliases: ["Levi's", Levis, "Levi Strauss"]}
+  - {name: Girlfriend Collective, aliases: ["Girlfriend Collective"]}
+  - {name: Buck Mason, aliases: ["Buck Mason"]}
+  - {name: Totême, aliases: [Totême, Toteme]}
+  - {name: Cuyana, aliases: [Cuyana]}
+  - {name: Aerie, aliases: [Aerie]}
+  - {name: Good American, aliases: ["Good American"]}
+  - {name: Universal Standard, aliases: ["Universal Standard"]}
+  - {name: MM.LaFleur, aliases: ["MM.LaFleur", "MM LaFleur"]}
+  - {name: Citizens of Humanity, aliases: ["Citizens of Humanity"]}
+  - {name: Arc'teryx, aliases: ["Arc'teryx", Arcteryx]}
+  - {name: Jenni Kayne, aliases: ["Jenni Kayne"]}
+  - {name: Nordstrom Rack, type: retailer, aliases: ["Nordstrom Rack"]}
+  - {name: Shopbop, type: retailer, aliases: [Shopbop]}
+  - {name: Poshmark, type: retailer, aliases: [Poshmark]}
+  - {name: ThredUp, type: retailer, aliases: [ThredUp]}

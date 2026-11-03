@@ -23,7 +23,7 @@ from typing import Callable
 
 from .collect import RateLimiter
 from .config import Brand, load_brands, load_study
-from .providers import ProviderError, make_provider
+from .providers import ProviderError, QuotaExhausted, make_provider
 
 # ----------------------------------------------------------------------------- dictionary extractor
 
@@ -52,12 +52,20 @@ def build_matcher(brands: list[Brand]) -> list[tuple[str, re.Pattern]]:
 
 
 def extract_dictionary(text: str, matcher: list[tuple[str, re.Pattern]]) -> list[Mention]:
+    """Find brands in ``text``. Where aliases overlap, the longest match wins ("Nordstrom Rack" is not "Nordstrom")."""
+    text = text.replace("\u2019", "'")                      # curly apostrophe -> straight; same length, offsets unchanged
+    hits = [(m.start(), m.end(), brand) for brand, pat in matcher for m in pat.finditer(text)]
+    hits.sort(key=lambda h: (h[0], -(h[1] - h[0])))
+    kept, last_end = [], -1
+    for start, end, brand in hits:
+        if start >= last_end:
+            kept.append((start, end, brand))
+            last_end = end
     found: dict[str, list[int]] = {}
-    for brand, pat in matcher:
-        for m in pat.finditer(text):
-            found.setdefault(brand, []).append(m.start())
-    ordered = sorted(found.items(), key=lambda kv: min(kv[1]))
-    return [Mention(b, min(pos), len(pos), i + 1) for i, (b, pos) in enumerate(ordered)]
+    for start, _, brand in kept:
+        found.setdefault(brand, []).append(start)
+    ordered = sorted(found.items(), key=lambda kv: kv[1][0])
+    return [Mention(b, pos[0], len(pos), i + 1) for i, (b, pos) in enumerate(ordered)]
 
 
 # ----------------------------------------------------------------------------- LLM extractor
@@ -116,10 +124,18 @@ def process(raw_path: Path, out_path: Path, *, use_llm: bool = True, workers: in
     brands = load_brands()
     matcher, nmap = build_matcher(brands), name_map_from(brands)
     study = load_study()
-    provider = provider_factory(study.extractor["provider"], study.extractor["model"]) if use_llm else None
+    ex = study.extractor
+    provider = provider_factory(ex["provider"], ex["model"], timeout=60, max_retries=2) if use_llm else None
+    fallback = (provider_factory(ex["provider"], ex["fallback_model"], timeout=60, max_retries=2)
+                if use_llm and ex.get("fallback_model") else None)
     done = set()
     if out_path.exists():
-        done = {(r["batch"], r["prompt_id"], r["surface"], r["run_index"]) for r in map(json.loads, out_path.read_text().splitlines()) if r}
+        old = [r for r in map(json.loads, out_path.read_text().splitlines()) if r]
+        failed = {(r["batch"], r["prompt_id"], r["surface"], r["run_index"]) for r in old if use_llm and r.get("llm_error")}
+        done = {(r["batch"], r["prompt_id"], r["surface"], r["run_index"]) for r in old} - failed
+        if failed:                                  # drop failed rows so they are re-extracted rather than duplicated
+            out_path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in old
+                                        if (r["batch"], r["prompt_id"], r["surface"], r["run_index"]) not in failed))
     records = [r for r in map(json.loads, raw_path.read_text().splitlines()) if r]
     todo = [r for r in records if (r["batch"], r["prompt_id"], r["surface"], r["run_index"]) not in done]
     log(f"{len(records)} raw answers; {len(todo)} to extract")
@@ -128,22 +144,29 @@ def process(raw_path: Path, out_path: Path, *, use_llm: bool = True, workers: in
 
     def work(r):
         d = [m.__dict__ for m in extract_dictionary(r["text"], matcher)]
-        llm, err = None, None
+        llm, err, used = None, None, None
         if provider:
             limiter.wait()
-            try:
-                llm = extract_llm(provider, r["prompt"], r["text"], nmap)
-            except ProviderError as e:
-                err = str(e)[:200]
-        return r, d, llm, err
+            for model_name, prov in ((ex["model"], provider), (ex.get("fallback_model"), fallback)):
+                if prov is None:
+                    continue
+                try:
+                    llm, used, err = extract_llm(prov, r["prompt"], r["text"], nmap), model_name, None
+                    break
+                except QuotaExhausted as e:
+                    err = str(e)[:200]
+                    break
+                except ProviderError as e:
+                    err = str(e)[:200]
+        return r, d, llm, err, used
 
     with out_path.open("a") as f, ThreadPoolExecutor(max_workers=workers) as pool:
         futs = [pool.submit(work, r) for r in todo]
         for n, fut in enumerate(as_completed(futs), 1):
-            r, d, llm, err = fut.result()
+            r, d, llm, err, used = fut.result()
             keep = {k: r[k] for k in ("batch", "prompt_id", "prompt", "intent", "topic", "surface", "model", "grounded",
                                       "run_index", "collected_at", "sources", "search_queries")}
-            rec = {**keep, "n_chars": len(r["text"]), "dict_mentions": d, "llm_mentions": llm, "llm_error": err}
+            rec = {**keep, "n_chars": len(r["text"]), "dict_mentions": d, "llm_mentions": llm, "llm_model": used, "llm_error": err}
             with lock:
                 f.write(json.dumps(rec, ensure_ascii=False) + "\n")
                 f.flush()
@@ -154,14 +177,42 @@ def process(raw_path: Path, out_path: Path, *, use_llm: bool = True, workers: in
     return stats
 
 
+def refresh(raw_path: Path, out_path: Path) -> int:
+    """Recompute dictionary mentions from the raw text and re-normalise LLM brand names after config/brands.yaml
+    changed, WITHOUT calling the LLM again. Returns the number of records rewritten."""
+    brands = load_brands()
+    matcher, nmap = build_matcher(brands), name_map_from(brands)
+    raw = {(r["batch"], r["prompt_id"], r["surface"], r["run_index"]): r
+           for r in map(json.loads, raw_path.read_text().splitlines()) if r}
+    rows = [json.loads(l) for l in out_path.read_text().splitlines() if l.strip()]
+    for rec in rows:
+        r = raw[(rec["batch"], rec["prompt_id"], rec["surface"], rec["run_index"])]
+        rec["dict_mentions"] = [m.__dict__ for m in extract_dictionary(r["text"], matcher)]
+        if rec["llm_mentions"] is not None:
+            seen, merged = set(), []
+            for m in rec["llm_mentions"]:
+                canon = nmap.get(m["brand"].lower(), m["brand"])
+                if canon in seen:
+                    continue
+                seen.add(canon)
+                merged.append({**m, "brand": canon, "known": m["brand"].lower() in nmap, "order": len(merged) + 1})
+            rec["llm_mentions"] = merged
+    out_path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows))
+    return len(rows)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--raw", type=Path, required=True)
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--no-llm", action="store_true")
+    ap.add_argument("--refresh", action="store_true", help="re-run only the dictionary step on existing output (no API calls)")
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--rpm", type=float, default=40)
     a = ap.parse_args()
+    if a.refresh:
+        print({"refreshed": refresh(a.raw, a.out)})
+        return
     print(process(a.raw, a.out, use_llm=not a.no_llm, workers=a.workers, rpm=a.rpm))
 
 
