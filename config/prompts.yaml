@@ -1,0 +1,50 @@
+# Prompts a shopper might type into an AI assistant. `intent` decides how each prompt is analysed:
+#   discovery   - brand NOT named: pure visibility (does the AI bring the brand up unprompted?)
+#   alternative - asks for alternatives to the focus brand
+#   versus      - head-to-head with a named competitor
+#   reputation  - asks about the focus brand directly (used for sentiment)
+prompts:
+  # ---- discovery (brand not named) -------------------------------------------------------------
+  - {id: d01, intent: discovery, topic: basics,    text: "What are the best stores to buy high-quality everyday basics for women?"}
+  - {id: d02, intent: discovery, topic: workwear,  text: "Where can I buy stylish women's workwear that isn't boring?"}
+  - {id: d03, intent: discovery, topic: workwear,  text: "What are the best places to buy women's tailored trousers and blazers for work?"}
+  - {id: d04, intent: discovery, topic: outerwear, text: "Which brands make the best women's puffer jackets for a cold winter?"}
+  - {id: d05, intent: discovery, topic: outerwear, text: "Where should I buy a good women's wool coat?"}
+  - {id: d06, intent: discovery, topic: dresses,   text: "What are the best brands for women's wedding guest dresses?"}
+  - {id: d07, intent: discovery, topic: dresses,   text: "Where can I find nice women's dresses for a date night?"}
+  - {id: d08, intent: discovery, topic: activewear,text: "What are the best brands for women's leggings and athleisure?"}
+  - {id: d09, intent: discovery, topic: basics,    text: "What are the best brands for women's bodysuits, tanks and tees?"}
+  - {id: d10, intent: discovery, topic: knitwear,  text: "Where can I buy soft, high-quality women's sweaters and knitwear?"}
+  - {id: d11, intent: discovery, topic: denim,     text: "What are the best brands for women's jeans?"}
+  - {id: d12, intent: discovery, topic: trend,     text: "Which clothing brands are most popular with women in their 20s right now?"}
+  - {id: d13, intent: discovery, topic: price,     text: "What are the best places to buy women's clothes under $100 per item?"}
+  - {id: d14, intent: discovery, topic: price,     text: "What are the best affordable women's fashion brands that still look expensive?"}
+  - {id: d15, intent: discovery, topic: price,     text: "Where can I find good quality women's trousers under $150?"}
+  - {id: d16, intent: discovery, topic: canada,    text: "What are the best Canadian women's clothing brands?"}
+  - {id: d17, intent: discovery, topic: canada,    text: "Where should I shop for women's fashion in Vancouver or Toronto?"}
+  - {id: d18, intent: discovery, topic: capsule,   text: "Which brands are best for building a minimalist capsule wardrobe?"}
+  - {id: d19, intent: discovery, topic: travel,    text: "What are the best brands for comfortable women's clothes for travel?"}
+  - {id: d20, intent: discovery, topic: gifts,     text: "Which clothing brands make great gifts for a fashion-loving woman?"}
+  - {id: d21, intent: discovery, topic: sustain,   text: "What are good women's clothing brands that balance quality and price?"}
+  - {id: d22, intent: discovery, topic: loungewear,text: "Where can I buy cozy, stylish women's loungewear?"}
+  - {id: d23, intent: discovery, topic: trend,     text: "What are the best clothing brands for a trendy but wearable wardrobe?"}
+  - {id: d24, intent: discovery, topic: basics,    text: "Which stores sell the best women's blazers?"}
+  # ---- alternatives -----------------------------------------------------------------------------
+  - {id: a01, intent: alternative, topic: general,  text: "What are good alternatives to Aritzia?"}
+  - {id: a02, intent: alternative, topic: price,    text: "What stores are like Aritzia but cheaper?"}
+  - {id: a03, intent: alternative, topic: workwear, text: "What brands are similar to Aritzia's Babaton for workwear?"}
+  - {id: a04, intent: alternative, topic: outerwear,text: "What are good alternatives to the Aritzia Super Puff?"}
+  - {id: a05, intent: alternative, topic: basics,   text: "Where else can I find clothes with the same style as Aritzia?"}
+  - {id: a06, intent: alternative, topic: canada,   text: "Are there other Canadian brands like Aritzia?"}
+  # ---- head-to-head -----------------------------------------------------------------------------
+  - {id: v01, intent: versus, topic: dresses,   competitor: Reformation, text: "Aritzia vs Reformation: which is better for dresses?"}
+  - {id: v02, intent: versus, topic: quality,   competitor: Zara,        text: "Aritzia vs Zara: which has better quality for the price?"}
+  - {id: v03, intent: versus, topic: activewear,competitor: Lululemon,   text: "Aritzia vs Lululemon: which is better for leggings and activewear?"}
+  - {id: v04, intent: versus, topic: basics,    competitor: Everlane,    text: "Aritzia vs Everlane: which is better for basics?"}
+  - {id: v05, intent: versus, topic: denim,     competitor: Madewell,    text: "Aritzia vs Madewell: which is better for jeans and casual wear?"}
+  - {id: v06, intent: versus, topic: trend,     competitor: Abercrombie & Fitch, text: "Aritzia vs Abercrombie: which is better for a trendy young wardrobe?"}
+  # ---- reputation (focus brand named) -----------------------------------------------------------
+  - {id: r01, intent: reputation, topic: value,   text: "Is Aritzia worth the price?"}
+  - {id: r02, intent: reputation, topic: quality, text: "How is the quality of Aritzia clothing?"}
+  - {id: r03, intent: reputation, topic: service, text: "What do customers say about Aritzia's sizing, returns and customer service?"}
+  - {id: r04, intent: reputation, topic: overall, text: "What are Aritzia's strengths and weaknesses as a clothing brand?"}

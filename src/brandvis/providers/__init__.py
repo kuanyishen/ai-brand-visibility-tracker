@@ -1,0 +1,14 @@
+from .base import ProviderError, Response
+from .gemini import GeminiProvider
+
+PROVIDERS = {"gemini": GeminiProvider}
+
+
+def make_provider(name: str, model: str):
+    try:
+        return PROVIDERS[name](model)
+    except KeyError:
+        raise ValueError(f"unknown provider {name!r}; available: {sorted(PROVIDERS)}") from None
+
+
+__all__ = ["ProviderError", "Response", "GeminiProvider", "PROVIDERS", "make_provider"]

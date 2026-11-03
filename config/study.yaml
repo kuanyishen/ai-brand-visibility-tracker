@@ -1,0 +1,17 @@
+# What gets measured, on which AI "surfaces", and how often.
+category: "Women's contemporary fashion"
+focus_brand: Aritzia
+runs_per_prompt: 3          # repeats of every prompt per surface (stability needs >= 2)
+temperature: 1.0            # default sampling temperature of consumer products is around 1
+surfaces:
+  - id: gemini-flash
+    provider: gemini
+    model: gemini-2.5-flash
+    grounded: false         # model knowledge only
+  - id: gemini-flash-search
+    provider: gemini
+    model: gemini-2.5-flash
+    grounded: true          # same model, with Google Search grounding (what shoppers see in AI answers with sources)
+extractor:
+  provider: gemini
+  model: gemini-2.5-flash-lite

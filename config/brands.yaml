@@ -1,0 +1,79 @@
+# Canonical brands the study tracks. `aliases` match case-insensitively on word boundaries;
+# `cs` aliases are case-sensitive (used for names that are also ordinary words).
+# Unknown brands are still discovered by the LLM extractor and reported as "other".
+brands:
+  # ---- focus brand and its own labels ----
+  - {name: Aritzia, type: focus, focus: true, aliases: [Aritzia, Wilfred, Babaton, "Super Puff", "Denim Forum", "The Group by Babaton"], cs: ["Sunday Best", TNA, Tna]}
+  # ---- contemporary / mid-market specialty ----
+  - {name: Reformation, aliases: [Reformation]}
+  - {name: Everlane, aliases: [Everlane]}
+  - {name: Madewell, aliases: [Madewell]}
+  - {name: J.Crew, aliases: ["J.Crew", "J. Crew", JCrew]}
+  - {name: Banana Republic, aliases: ["Banana Republic"]}
+  - {name: Ann Taylor, aliases: ["Ann Taylor", AnnTaylor]}
+  - {name: LOFT, aliases: [], cs: [LOFT, Loft]}
+  - {name: Anthropologie, aliases: [Anthropologie]}
+  - {name: Free People, aliases: ["Free People"]}
+  - {name: Urban Outfitters, aliases: ["Urban Outfitters"]}
+  - {name: Abercrombie & Fitch, aliases: [Abercrombie, "A&F", Hollister]}
+  - {name: American Eagle, aliases: ["American Eagle"]}
+  - {name: Gap, aliases: [], cs: [Gap]}
+  - {name: Old Navy, aliases: ["Old Navy"]}
+  - {name: Express, aliases: [], cs: [Express]}
+  - {name: Theory, aliases: [], cs: [Theory]}
+  - {name: Vince, aliases: [], cs: [Vince]}
+  - {name: Reiss, aliases: [Reiss]}
+  - {name: Sandro, aliases: [Sandro]}
+  - {name: Maje, aliases: [Maje]}
+  - {name: Sézane, aliases: [Sézane, Sezane]}
+  - {name: Club Monaco, aliases: ["Club Monaco"]}
+  - {name: Eileen Fisher, aliases: ["Eileen Fisher"]}
+  - {name: Rag & Bone, aliases: ["Rag & Bone", "Rag and Bone"]}
+  - {name: Veronica Beard, aliases: ["Veronica Beard"]}
+  - {name: Nili Lotan, aliases: ["Nili Lotan"]}
+  - {name: L'Agence, aliases: ["L'Agence", LAgence]}
+  - {name: Max Mara, aliases: ["Max Mara"]}
+  # ---- fast fashion / high street ----
+  - {name: Zara, aliases: [Zara]}
+  - {name: H&M, aliases: ["H&M"], cs: ["H and M"]}
+  - {name: Mango, aliases: [], cs: [Mango, MANGO]}
+  - {name: COS, aliases: [], cs: [COS]}
+  - {name: "& Other Stories", aliases: ["& Other Stories", "and Other Stories"]}
+  - {name: Massimo Dutti, aliases: ["Massimo Dutti"]}
+  - {name: Uniqlo, aliases: [Uniqlo]}
+  - {name: Quince, aliases: [], cs: [Quince]}
+  - {name: Shein, aliases: [Shein]}
+  - {name: ASOS, aliases: [ASOS]}
+  # ---- activewear / outerwear ----
+  - {name: Lululemon, aliases: [Lululemon]}
+  - {name: Alo Yoga, aliases: ["Alo Yoga"], cs: [Alo]}
+  - {name: Athleta, aliases: [Athleta]}
+  - {name: Vuori, aliases: [Vuori]}
+  - {name: Gymshark, aliases: [Gymshark]}
+  - {name: Fabletics, aliases: [Fabletics]}
+  - {name: Nike, aliases: [Nike]}
+  - {name: Skims, aliases: [], cs: [Skims, SKIMS]}
+  - {name: Spanx, aliases: [Spanx]}
+  - {name: Patagonia, aliases: [Patagonia]}
+  - {name: The North Face, aliases: ["The North Face", "North Face"]}
+  - {name: Canada Goose, aliases: ["Canada Goose"]}
+  - {name: Moncler, aliases: [Moncler]}
+  - {name: Columbia, aliases: [], cs: [Columbia]}
+  - {name: Burberry, aliases: [Burberry]}
+  # ---- Canadian ----
+  - {name: Roots, aliases: [], cs: [Roots]}
+  - {name: Joe Fresh, aliases: ["Joe Fresh"]}
+  - {name: Frank And Oak, aliases: ["Frank And Oak", "Frank & Oak"]}
+  - {name: Simons, aliases: [], cs: [Simons]}
+  - {name: Le Château, aliases: ["Le Château", "Le Chateau"]}
+  # ---- department stores / marketplaces ----
+  - {name: Nordstrom, type: retailer, aliases: [Nordstrom]}
+  - {name: Saks Fifth Avenue, type: retailer, aliases: ["Saks Fifth Avenue", "Saks"]}
+  - {name: Neiman Marcus, type: retailer, aliases: ["Neiman Marcus"]}
+  - {name: Bloomingdale's, type: retailer, aliases: ["Bloomingdale's", Bloomingdales]}
+  - {name: Macy's, type: retailer, aliases: ["Macy's", Macys]}
+  - {name: Target, type: retailer, aliases: [], cs: [Target]}
+  - {name: Amazon, type: retailer, aliases: [Amazon]}
+  - {name: Revolve, type: retailer, aliases: [], cs: [Revolve]}
+  - {name: Hudson's Bay, type: retailer, aliases: ["Hudson's Bay"], cs: ["The Bay"]}
+  - {name: Holt Renfrew, type: retailer, aliases: ["Holt Renfrew"]}
