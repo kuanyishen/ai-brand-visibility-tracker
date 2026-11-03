@@ -18,7 +18,7 @@ from pathlib import Path
 from typing import Callable
 
 from .config import Prompt, Study, load_prompts, load_study
-from .providers import ProviderError, make_provider
+from .providers import ProviderError, QuotaExhausted, make_provider
 
 
 def job_key(batch: str, prompt_id: str, surface_id: str, run_index: int) -> tuple:
@@ -64,7 +64,7 @@ def run(study: Study, prompts: list[Prompt], out: Path, batch: str, *, workers: 
     log(f"{len(done)} already collected; {len(jobs)} to do")
     providers = {s.id: provider_factory(s.provider, s.model) for s in study.surfaces}
     limiter, lock = RateLimiter(rpm), threading.Lock()
-    stats = {"ok": 0, "failed": 0}
+    stats = {"ok": 0, "failed": 0, "quota_exhausted": False}
 
     def work(job):
         p, s, i = job
@@ -78,6 +78,12 @@ def run(study: Study, prompts: list[Prompt], out: Path, batch: str, *, workers: 
             p, s, i = futures[fut]
             try:
                 _, r = fut.result()
+            except QuotaExhausted as e:
+                stats["quota_exhausted"] = True
+                log(f"  STOPPING: {str(e)[:200]}")
+                for other in futures:
+                    other.cancel()
+                break
             except ProviderError as e:
                 stats["failed"] += 1
                 log(f"  FAILED {p.id}/{s.id}/{i}: {str(e)[:160]}")

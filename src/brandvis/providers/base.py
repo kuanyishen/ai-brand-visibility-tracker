@@ -9,6 +9,10 @@ class ProviderError(RuntimeError):
     """Raised when a call fails permanently (after retries)."""
 
 
+class QuotaExhausted(ProviderError):
+    """A daily/billing quota is used up: retrying today is pointless, so callers should stop the whole run."""
+
+
 @dataclass
 class Response:
     text: str

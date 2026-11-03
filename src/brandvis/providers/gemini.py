@@ -14,7 +14,7 @@ import time
 import urllib.error
 import urllib.request
 
-from .base import ProviderError, Response
+from .base import ProviderError, QuotaExhausted, Response
 
 BASE = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 RETRY_STATUS = {429, 500, 502, 503, 504}
@@ -46,7 +46,9 @@ class GeminiProvider:
                 with urllib.request.urlopen(req, timeout=self.timeout) as r:
                     return json.load(r)
             except urllib.error.HTTPError as e:
-                last = e.read().decode(errors="replace")[:500]
+                last = e.read().decode(errors="replace")[:1500]
+                if e.code == 429 and "PerDay" in last:
+                    raise QuotaExhausted(f"daily quota exhausted for {self.model}: " + re.sub(r"\s+", " ", last)[:300]) from None
                 if e.code not in RETRY_STATUS or attempt == self.max_retries:
                     raise ProviderError(f"HTTP {e.code}: {last}") from None
                 time.sleep(_retry_delay(last, attempt))
