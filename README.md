@@ -37,7 +37,7 @@ src/brandvis/      providers (Gemini), collect, extract, metrics, stats
 analysis/          analyze.py (all numbers + figures), build_site.py (dashboard)
 data/raw|processed raw answers and extracted mentions (JSONL)
 docs/              dashboard (index.html) and figures
-tests/             28 tests: extraction rules, collector resume/quota, statistics, metrics
+tests/             29 tests: extraction rules, collector resume/quota, statistics, metrics
 ```
 
 ## Reproduce

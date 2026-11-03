@@ -192,7 +192,7 @@ export GEMINI_API_KEY=...                       # not needed if a proxy injects 
 python -m brandvis.collect --batch 2026-11-03   # 240 answers, ~12 min
 python -m brandvis.extract --raw data/raw/2026-11-03.jsonl --out data/processed/2026-11-03.jsonl
 python analysis/analyze.py &amp;&amp; python analysis/build_site.py
-pytest                                           # 28 tests</code></pre>
+pytest                                           # 29 tests</code></pre>
 <p>Next steps: add more AI surfaces (the provider interface is one small class), repeat weekly to track drift, and grow the prompt set to ~70 for tighter intervals.</p>
 <footer>Built by Sky Shen · <a href="{REPO}">source and raw data</a></footer>
 </main>
