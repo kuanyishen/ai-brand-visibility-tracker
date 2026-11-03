@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Brand Visibility Tracker</title>
+<meta name="description" content="How often, how prominently and how consistently do AI assistants bring up a brand? A measured study of women's fashion, with confidence intervals and statistical tests.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <a class="brand" href="index.html">AI brand visibility tracker</a>
+  <a href="#design">Design</a><a href="#visibility">Visibility</a><a href="#search">Search effect</a><a href="#stability">Stability</a><a href="#sources">Sources</a><a href="#audit">Audit</a>
+  <a href="https://github.com/kuanyishen/ai-brand-visibility-tracker">GitHub</a>
+</div></nav>
+<main class="wrap">
+<header class="hero">
+  <div class="eyebrow">Generative engine visibility · Women's contemporary fashion</div>
+  <h1>Does AI recommend Aritzia? Measuring brand visibility in AI answers</h1>
+  <p class="lead">When a shopper asks an AI assistant where to buy a blazer, which brands does it name, in what order, and would it say the same thing twice? I asked 40 shopper questions 3 times each on two AI surfaces, extracted every brand mentioned, and measured visibility with proper confidence intervals and tests. Aritzia is the focus brand; 93 brands are tracked.</p>
+  <p class="sub">Independent study; not affiliated with Aritzia or any brand mentioned. Results describe what one model said on one day (2026-11-03), not the brands' products.</p>
+  <div class="row"><a class="btn" href="#visibility">See the results</a><a class="btn ghost" href="https://github.com/kuanyishen/ai-brand-visibility-tracker">View code</a></div>
+</header>
+
+<div class="kpis">
+  <div class="kpi"><b>57% / 46%</b><span>of answers mention Aritzia when the question never names a brand (no search / with search)</span></div>
+  <div class="kpi"><b>#3 / #1</b><span>Aritzia's rank among 93 tracked brands by visibility, though gaps to rivals are within noise</span></div>
+  <div class="kpi"><b>0.60 / 0.48</b><span>overlap between the brand lists of two answers to the same question (1.0 = identical)</span></div>
+  <div class="kpi"><b>72+</b><span>different prompts needed to pin the mention rate to ±5 pp; repeating the same prompts cannot do it</span></div>
+</div>
+
+<div class="callout"><p><b>TL;DR.</b> With no brand named, Gemini brings up Aritzia in about half of shopping answers (57% without search, 46% with Google Search) and ranks it #1 with search. But visibility depends heavily on the topic (canada, capsule, basics vs none in activewear, denim, knitwear), and with only 24 unbranded prompts I can't statistically separate Aritzia from competitors such as Everlane or Uniqlo. Search makes answers shorter (3.7 fewer brands per answer, p = 0.0003) but the change in Aritzia's mention rate (-11 pp, CI [-25 pp, +3 pp]) is inconclusive. Repeating a question changes the brand list a lot, so single-shot "AI visibility scores" can mislead.</p></div>
+
+<h2 id="design">1 · Study design</h2>
+<p>Every prompt is something a shopper might type. Only the <b>unbranded</b> prompts measure visibility, because a brand named in the question will naturally appear in the answer.</p>
+<div class="tablewrap"><table><thead><tr><th>Prompt type</th><th>Prompts</th><th>Example</th><th>Used for</th></tr></thead><tbody><tr><td>Unbranded ("discovery")</td><td>24</td><td>"Where can I buy stylish women's workwear that isn't boring?"</td><td>Visibility, share of voice, rank</td></tr><tr><td>Alternatives</td><td>6</td><td>"What are good alternatives to Aritzia?"</td><td>Which competitors are named</td></tr><tr><td>Head-to-head</td><td>6</td><td>"Aritzia vs Reformation: which is better for dresses?"</td><td>Positioning, sentiment</td></tr><tr><td>About the brand</td><td>4</td><td>"Is Aritzia worth the price?"</td><td>Sentiment</td></tr></tbody></table></div>
+<p>Two <b>AI surfaces</b> built on the same model (<code>gemini-2.5-flash</code>): plain, answering from the model's own knowledge, and with <b>Google Search grounding</b>, which looks up web pages and cites them (closer to what shoppers see in AI answers with sources). Each prompt was asked 3 times at temperature 1.0 on each surface: <b>240 answers</b>, about 488k tokens. Brands were extracted two independent ways (exact-name dictionary and an LLM reader) and audited against each other (section 7).</p>
+<p class="sub">Statistics note: answers to the same prompt are far more alike than answers to different prompts, so every interval resamples <em>prompts</em>, not answers. Treating all 240 answers as independent would make the intervals look too tight.</p>
+
+<h2 id="visibility">2 · How visible is Aritzia?</h2>
+<figure><img src="assets/fig_visibility.png" alt="Brand mention rates on unbranded prompts for both surfaces"><figcaption>Share of answers to the 24 unbranded questions that mention each brand. Bars are 95% confidence intervals over prompts. Aritzia's own labels (Wilfred, Babaton, Tna, Sunday Best, Super Puff) count as Aritzia.</figcaption></figure>
+<h3>Gemini (no search)</h3>
+<div class="tablewrap"><table><thead><tr><th>#</th><th>Brand</th><th>Mentioned in</th><th>95% CI</th><th>Share of voice</th><th>Avg. position when mentioned</th></tr></thead><tbody><tr><td>1</td><td>Everlane</td><td>61%</td><td>[42%, 79%]</td><td>4.3%</td><td>6.2</td></tr><tr><td>2</td><td>H&M</td><td>61%</td><td>[44%, 76%]</td><td>4.3%</td><td>8.4</td></tr><tr><td>3</td><td><b>Aritzia</b></td><td>57%</td><td>[39%, 74%]</td><td>4.0%</td><td>5.9</td></tr><tr><td>4</td><td>Zara</td><td>50%</td><td>[33%, 67%]</td><td>3.5%</td><td>9.5</td></tr><tr><td>5</td><td>Nordstrom</td><td>46%</td><td>[28%, 64%]</td><td>3.2%</td><td>8.0</td></tr><tr><td>6</td><td>Uniqlo</td><td>44%</td><td>[26%, 64%]</td><td>3.1%</td><td>7.8</td></tr><tr><td>7</td><td>J.Crew</td><td>44%</td><td>[29%, 61%]</td><td>3.1%</td><td>7.5</td></tr><tr><td>8</td><td>Madewell</td><td>42%</td><td>[25%, 60%]</td><td>2.9%</td><td>5.8</td></tr><tr><td>9</td><td>COS</td><td>39%</td><td>[22%, 57%]</td><td>2.7%</td><td>6.2</td></tr><tr><td>10</td><td>Reformation</td><td>38%</td><td>[21%, 54%]</td><td>2.6%</td><td>8.1</td></tr></tbody></table></div>
+<h3>Gemini + Google Search</h3>
+<div class="tablewrap"><table><thead><tr><th>#</th><th>Brand</th><th>Mentioned in</th><th>95% CI</th><th>Share of voice</th><th>Avg. position when mentioned</th></tr></thead><tbody><tr><td>1</td><td><b>Aritzia</b></td><td>46%</td><td>[31%, 61%]</td><td>4.4%</td><td>5.6</td></tr><tr><td>2</td><td>Uniqlo</td><td>43%</td><td>[28%, 58%]</td><td>4.1%</td><td>6.5</td></tr><tr><td>3</td><td>Quince</td><td>40%</td><td>[25%, 57%]</td><td>3.9%</td><td>5.3</td></tr><tr><td>4</td><td>Everlane</td><td>39%</td><td>[24%, 56%]</td><td>3.7%</td><td>5.1</td></tr><tr><td>5</td><td>Reformation</td><td>38%</td><td>[22%, 53%]</td><td>3.6%</td><td>7.4</td></tr><tr><td>6</td><td>Nordstrom</td><td>38%</td><td>[22%, 53%]</td><td>3.6%</td><td>7.0</td></tr><tr><td>7</td><td>Eileen Fisher</td><td>36%</td><td>[19%, 54%]</td><td>3.5%</td><td>6.2</td></tr><tr><td>8</td><td>COS</td><td>33%</td><td>[18%, 50%]</td><td>3.2%</td><td>6.2</td></tr><tr><td>9</td><td>Spanx</td><td>26%</td><td>[12%, 40%]</td><td>2.5%</td><td>7.9</td></tr><tr><td>10</td><td>Madewell</td><td>26%</td><td>[14%, 40%]</td><td>2.5%</td><td>7.2</td></tr></tbody></table></div>
+<p>Aritzia is the 3rd most-mentioned brand without search and the 1st with search. Is it <em>significantly</em> ahead of anyone? No. Comparing Aritzia with each top competitor on the same prompts (paired by prompt, Holm-corrected for multiple comparisons), the smallest adjusted p-value is 0.93 without search and 0.82 with search:</p>
+<div class="tablewrap"><table><thead><tr><th>Surface</th><th>Competitor</th><th>Aritzia minus competitor</th><th>95% CI</th><th>p (Holm-adjusted)</th></tr></thead><tbody><tr><td>Gemini (no search)</td><td>Everlane</td><td>-4 pp</td><td>[-26 pp, +18 pp]</td><td>1.00</td></tr><tr><td>Gemini (no search)</td><td>H&M</td><td>-4 pp</td><td>[-22 pp, +15 pp]</td><td>1.00</td></tr><tr><td>Gemini (no search)</td><td>Zara</td><td>+7 pp</td><td>[-13 pp, +28 pp]</td><td>1.00</td></tr><tr><td>Gemini (no search)</td><td>Nordstrom</td><td>+11 pp</td><td>[-15 pp, +38 pp]</td><td>1.00</td></tr><tr><td>Gemini (no search)</td><td>Uniqlo</td><td>+12 pp</td><td>[-7 pp, +33 pp]</td><td>1.00</td></tr><tr><td>Gemini (no search)</td><td>J.Crew</td><td>+12 pp</td><td>[-7 pp, +32 pp]</td><td>1.00</td></tr><tr><td>Gemini + Google Search</td><td>Uniqlo</td><td>+3 pp</td><td>[-18 pp, +25 pp]</td><td>1.00</td></tr><tr><td>Gemini + Google Search</td><td>Quince</td><td>+6 pp</td><td>[-15 pp, +28 pp]</td><td>1.00</td></tr><tr><td>Gemini + Google Search</td><td>Everlane</td><td>+7 pp</td><td>[-12 pp, +28 pp]</td><td>1.00</td></tr><tr><td>Gemini + Google Search</td><td>Reformation</td><td>+8 pp</td><td>[-11 pp, +28 pp]</td><td>1.00</td></tr><tr><td>Gemini + Google Search</td><td>Nordstrom</td><td>+8 pp</td><td>[-12 pp, +31 pp]</td><td>1.00</td></tr><tr><td>Gemini + Google Search</td><td>Eileen Fisher</td><td>+10 pp</td><td>[-12 pp, +32 pp]</td><td>1.00</td></tr></tbody></table></div>
+<p class="sub">Share of voice = a brand's mentions divided by all tracked-brand mentions. Rank = order of first mention within the answer (1 = first brand named). "Mentioned in" counts an answer once however often the brand appears.</p>
+
+<h3>It depends on the topic</h3>
+<figure><img src="assets/fig_topics.png" alt="Aritzia mention rate by topic" style="max-width:640px"><figcaption>Each topic has only 1-3 prompts (3-9 answers per surface), so read this as descriptive, not as precise estimates.</figcaption></figure>
+<p>Aritzia shows up almost every time for Canada-related, capsule-wardrobe, basics, trend and workwear questions, and never for activewear, denim, knitwear, travel. For a brand team the actionable view is the <em>gaps by topic</em>, not the single average.</p>
+
+<h2 id="search">3 · Does adding search change the answer?</h2>
+<p>Compared prompt by prompt (the same 24 unbranded questions on both surfaces):</p>
+<div class="tablewrap"><table><thead><tr><th>Metric</th><th>Gemini (no search)</th><th>Gemini + Google Search</th><th>Difference (search − plain)</th><th>95% CI over prompts</th><th>p (sign-flip test)</th></tr></thead><tbody><tr><td>Aritzia mention rate</td><td>57%</td><td>46%</td><td>-11 pp</td><td>[-25 pp, +3 pp]</td><td>0.21</td></tr><tr><td>Tracked brands named per answer</td><td>14.2</td><td>10.5</td><td>-3.7</td><td>[-5.4, -2.0]</td><td>0.0003</td></tr></tbody></table></div>
+<p><b>Search makes answers more selective</b>: -3.7 brands per answer on average, a clear effect (the confidence interval excludes zero). <b>Its effect on Aritzia's mention rate is inconclusive</b>: the estimate is -11 pp, but with 24 prompts this comparison can only reliably detect differences of about 21% (80% power), so a real effect of 10 points would very often be missed. That is a power-analysis result about my design, not evidence of "no effect".</p>
+
+<h2 id="stability">4 · Would the AI say the same thing twice?</h2>
+<div class="tablewrap"><table><thead><tr><th>Prompt type</th><th>Gemini (no search)</th><th>Gemini + Google Search</th></tr></thead><tbody><tr><td>No brand named</td><td>0.60</td><td>0.48</td></tr><tr><td>Alternatives to Aritzia</td><td>0.58</td><td>0.60</td></tr><tr><td>About Aritzia</td><td>0.68</td><td>0.88</td></tr><tr><td>Aritzia vs competitor</td><td>0.87</td><td>0.96</td></tr></tbody></table></div>
+<figure><img src="assets/fig_stability.png" alt="Brand list overlap between repeated answers" style="max-width:640px"><figcaption>Jaccard overlap of the brand lists in repeated answers to the same prompt (1 = identical, 0 = nothing in common).</figcaption></figure>
+<p>For unbranded questions, two answers to the same prompt share only about 60% of their brands without search and 48% with search. In the plain surface, 9 of 24 prompts always mention Aritzia, 7 never do, and 8 do so only <em>sometimes</em> (with search: 7 / 7 / 10). A single run of a prompt is therefore a noisy measurement.</p>
+<h3>How many repeats and prompts do you need?</h3>
+<p>I split the variance in "did the answer mention Aritzia?" into a part that differs <b>between prompts</b> and a part that differs <b>between repeats of the same prompt</b> (intra-class correlation, ICC): 0.56 without search, 0.46 with search. Prompt-to-prompt differences set a floor that repeating cannot remove:</p>
+<figure><img src="assets/fig_design.png" alt="Standard error versus number of repeats and prompts"><figcaption>Standard error of the overall mention rate under the fitted variance components. Left: with 24 prompts, repeating each one 100 times still leaves SE ≈ 8 pp. Right: more prompts keep shrinking it.</figcaption></figure>
+<p><b>Design rule:</b> to estimate a mention rate to ±5 percentage points (one SE) you need about 72 prompts with 3 repeats each (59 even with 30 repeats). This is the same power logic as an A/B test, applied to prompt design, and it is why the intervals above are as wide as they are.</p>
+
+<h2>5 · What do the answers say about Aritzia?</h2>
+<p>Sentiment and "recommended" flags come from the LLM reader judging how the <em>answer</em> portrays the brand (not my opinion of the brand):</p>
+<div class="tablewrap"><table><thead><tr><th>Prompt type</th><th>Surface</th><th>Answers mentioning Aritzia</th><th>Positive / neutral / mixed / negative</th><th>Recommended</th></tr></thead><tbody><tr><td>No brand named</td><td>Gemini (no search)</td><td>41</td><td>41 / 0 / 0 / 0</td><td>98%</td></tr><tr><td>No brand named</td><td>Gemini + Google Search</td><td>33</td><td>31 / 2 / 0 / 0</td><td>82%</td></tr><tr><td>Alternatives to Aritzia</td><td>Gemini (no search)</td><td>18</td><td>9 / 9 / 0 / 0</td><td>0%</td></tr><tr><td>Alternatives to Aritzia</td><td>Gemini + Google Search</td><td>17</td><td>2 / 15 / 0 / 0</td><td>0%</td></tr><tr><td>Aritzia vs competitor</td><td>Gemini (no search)</td><td>18</td><td>11 / 0 / 7 / 0</td><td>78%</td></tr><tr><td>Aritzia vs competitor</td><td>Gemini + Google Search</td><td>18</td><td>6 / 0 / 12 / 0</td><td>56%</td></tr><tr><td>About Aritzia</td><td>Gemini (no search)</td><td>12</td><td>0 / 0 / 12 / 0</td><td>25%</td></tr><tr><td>About Aritzia</td><td>Gemini + Google Search</td><td>12</td><td>0 / 0 / 12 / 0</td><td>17%</td></tr></tbody></table></div>
+<p>When Aritzia appears in an unbranded answer it is almost always portrayed positively and recommended (98% without search, 82% with search). Asked directly whether it is worth the price, both surfaces give a <em>mixed</em> verdict every time (12 of 12 and 12 of 12 answers) and recommend it less (25% / 17%). Selection bias matters here: discovery answers list only brands the AI chooses to recommend, so they are positive almost by construction.</p>
+
+<h2 id="sources">6 · Where does the search-grounded answer get its information?</h2>
+<figure><img src="assets/fig_sources.png" alt="Most cited domains" style="max-width:640px"><figcaption>120 search-grounded answers cited 378 different domains (12 citations per answer on average).</figcaption></figure>
+<div class="tablewrap"><table><thead><tr><th>Domain</th><th>Share of citations</th><th>Answers citing it</th><th>Type</th></tr></thead><tbody><tr><td>reddit.com</td><td>10.0%</td><td>65</td><td>social / community</td></tr><tr><td>whowhatwear.com</td><td>5.7%</td><td>66</td><td>editorial / blogs</td></tr><tr><td>youtube.com</td><td>3.4%</td><td>29</td><td>social / community</td></tr><tr><td>nordstrom.com</td><td>2.7%</td><td>29</td><td>retailer or brand site</td></tr><tr><td>aritzia.com</td><td>2.2%</td><td>19</td><td>retailer or brand site</td></tr><tr><td>lemon8-app.com</td><td>2.1%</td><td>20</td><td>social / community</td></tr><tr><td>businessinsider.com</td><td>2.0%</td><td>29</td><td>editorial / blogs</td></tr><tr><td>thingtesting.com</td><td>1.9%</td><td>20</td><td>reviews</td></tr><tr><td>narcity.com</td><td>1.3%</td><td>17</td><td>editorial / blogs</td></tr><tr><td>trustpilot.com</td><td>1.3%</td><td>10</td><td>reviews</td></tr></tbody></table></div>
+<ul class="tight">
+<li><b>Community and editorial content dominates.</b> Reddit alone is cited in 65 of 120 answers (54%); social/community sites are 16% of all citations and editorial/blogs 66%.</li>
+<li><b>The brand's own site is a small share:</b> Aritzia's website accounts for 2.2% of citations (19 answers). What other people write about a brand matters at least as much as what the brand publishes.</li>
+<li class="sub">Domain types are a rough automatic labelling (retailer/brand sites are matched against the brand list; everything else non-social, non-review is "editorial / blogs").</li>
+</ul>
+
+<h2 id="audit">7 · Auditing the measurement itself</h2>
+<p>Both extractors agree on 99.3% of all answer × brand cells (Cohen's κ = 0.96), and they give the <em>same</em> Aritzia mention rate on unbranded prompts (56.9% and 45.8% by dictionary, 56.9% and 45.8% by LLM). I read the disagreements in context: the dictionary-only hits are mostly ownership mentions ("part of the H&amp;M group", "Gap Inc.", "an Amazon-owned retailer") and a few false positives such as the verb "Target"; the LLM never found a tracked brand that the dictionary missed. The dictionary is the primary measure; the LLM reader is the robustness check and the source of sentiment.</p>
+<p>The LLM also reports brands outside my list: 41% of its brand mentions are to untracked brands (Poshmark, Lulus, Boden and others), so share of voice here means share <em>among the 93 tracked brands</em>. After the first collection I added the 24 most frequent untracked names to the dictionary.</p>
+
+<h2>Limitations</h2>
+<ul class="tight">
+<li><b>One model family, one day.</b> Both surfaces are Gemini 2.5 Flash. ChatGPT, Perplexity, Claude and Google's AI Overviews may differ, and answers drift over time. This is a snapshot, not a trend.</li>
+<li><b>API is not the consumer product.</b> The apps add system prompts, personalization and location that an API call does not.</li>
+<li><b>The prompt set is my design.</b> Several prompts relate to Canada and everyday basics, where Aritzia naturally fits, so the absolute mention rate depends on the prompt mix; relative comparisons across surfaces and brands are more reliable than the level.</li>
+<li><b>Small samples per topic and per competitor comparison</b> (24 unbranded prompts): conclusions are about patterns and design, not precise market-share numbers.</li>
+<li><b>What an AI says is not what is true.</b> Sentiment is how the answer portrays a brand, judged by another model.</li>
+</ul>
+
+<h2>Reproduce and extend</h2>
+<pre><code>pip install -e ".[dev]"
+export GEMINI_API_KEY=...                       # not needed if a proxy injects the credential
+python -m brandvis.collect --batch 2026-11-03   # 240 answers, ~12 min
+python -m brandvis.extract --raw data/raw/2026-11-03.jsonl --out data/processed/2026-11-03.jsonl
+python analysis/analyze.py &amp;&amp; python analysis/build_site.py
+pytest                                           # 28 tests</code></pre>
+<p>Next steps: add more AI surfaces (the provider interface is one small class), repeat weekly to track drift, and grow the prompt set to ~70 for tighter intervals.</p>
+<footer>Built by Sky Shen · <a href="https://github.com/kuanyishen/ai-brand-visibility-tracker">source and raw data</a></footer>
+</main>
+</body>
+</html>

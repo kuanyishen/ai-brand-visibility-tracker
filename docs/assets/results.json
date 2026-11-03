@@ -1,0 +1,1811 @@
+{
+ "meta": {
+  "n_answers": 240,
+  "n_prompts": 40,
+  "runs_per_prompt": 3,
+  "surfaces": {
+   "gemini-flash": {
+    "model": "gemini-2.5-flash",
+    "grounded": false
+   },
+   "gemini-flash-search": {
+    "model": "gemini-2.5-flash",
+    "grounded": true
+   }
+  },
+  "intent_counts": {
+   "discovery": 24,
+   "alternative": 6,
+   "versus": 6,
+   "reputation": 4
+  },
+  "n_brands_tracked": 93,
+  "collected_from": "2026-11-03",
+  "collected_to": "2026-11-03",
+  "total_tokens": 488498,
+  "focus": "Aritzia",
+  "category": "Women's contemporary fashion"
+ },
+ "visibility": {
+  "gemini-flash": [
+   {
+    "brand": "Everlane",
+    "mention_rate": 0.61111,
+    "mr_lo": 0.41667,
+    "mr_hi": 0.79167,
+    "share_of_voice": 0.04318,
+    "sov_lo": 0.03013,
+    "sov_hi": 0.05603,
+    "mean_rank": 6.18182,
+    "top3_rate": 0.23611,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "H&M",
+    "mention_rate": 0.61111,
+    "mr_lo": 0.44444,
+    "mr_hi": 0.76389,
+    "share_of_voice": 0.04318,
+    "sov_lo": 0.03373,
+    "sov_hi": 0.05174,
+    "mean_rank": 8.40909,
+    "top3_rate": 0.125,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Aritzia",
+    "mention_rate": 0.56944,
+    "mr_lo": 0.38889,
+    "mr_hi": 0.73611,
+    "share_of_voice": 0.04024,
+    "sov_lo": 0.02804,
+    "sov_hi": 0.05257,
+    "mean_rank": 5.85366,
+    "top3_rate": 0.26389,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Zara",
+    "mention_rate": 0.5,
+    "mr_lo": 0.33333,
+    "mr_hi": 0.66667,
+    "share_of_voice": 0.03533,
+    "sov_lo": 0.02449,
+    "sov_hi": 0.04545,
+    "mean_rank": 9.5,
+    "top3_rate": 0.09722,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Nordstrom",
+    "mention_rate": 0.45833,
+    "mr_lo": 0.27778,
+    "mr_hi": 0.63889,
+    "share_of_voice": 0.03238,
+    "sov_lo": 0.02104,
+    "sov_hi": 0.04257,
+    "mean_rank": 7.9697,
+    "top3_rate": 0.13889,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Uniqlo",
+    "mention_rate": 0.44444,
+    "mr_lo": 0.26389,
+    "mr_hi": 0.63889,
+    "share_of_voice": 0.0314,
+    "sov_lo": 0.01867,
+    "sov_hi": 0.04545,
+    "mean_rank": 7.84375,
+    "top3_rate": 0.11111,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "J.Crew",
+    "mention_rate": 0.44444,
+    "mr_lo": 0.29167,
+    "mr_hi": 0.61111,
+    "share_of_voice": 0.0314,
+    "sov_lo": 0.02144,
+    "sov_hi": 0.04072,
+    "mean_rank": 7.53125,
+    "top3_rate": 0.01389,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Madewell",
+    "mention_rate": 0.41667,
+    "mr_lo": 0.25,
+    "mr_hi": 0.59722,
+    "share_of_voice": 0.02944,
+    "sov_lo": 0.01747,
+    "sov_hi": 0.04215,
+    "mean_rank": 5.8,
+    "top3_rate": 0.13889,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "COS",
+    "mention_rate": 0.38889,
+    "mr_lo": 0.22222,
+    "mr_hi": 0.56944,
+    "share_of_voice": 0.02748,
+    "sov_lo": 0.01616,
+    "sov_hi": 0.04009,
+    "mean_rank": 6.21429,
+    "top3_rate": 0.11111,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Reformation",
+    "mention_rate": 0.375,
+    "mr_lo": 0.20833,
+    "mr_hi": 0.54167,
+    "share_of_voice": 0.0265,
+    "sov_lo": 0.01451,
+    "sov_hi": 0.03946,
+    "mean_rank": 8.07407,
+    "top3_rate": 0.08333,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Lululemon",
+    "mention_rate": 0.36111,
+    "mr_lo": 0.19444,
+    "mr_hi": 0.54201,
+    "share_of_voice": 0.02552,
+    "sov_lo": 0.01288,
+    "sov_hi": 0.041,
+    "mean_rank": 7.42308,
+    "top3_rate": 0.06944,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Saks Fifth Avenue",
+    "mention_rate": 0.34722,
+    "mr_lo": 0.19444,
+    "mr_hi": 0.51389,
+    "share_of_voice": 0.02453,
+    "sov_lo": 0.01454,
+    "sov_hi": 0.03323,
+    "mean_rank": 9.36,
+    "top3_rate": 0.06944,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Vince",
+    "mention_rate": 0.29167,
+    "mr_lo": 0.13889,
+    "mr_hi": 0.45833,
+    "share_of_voice": 0.02061,
+    "sov_lo": 0.00978,
+    "sov_hi": 0.03275,
+    "mean_rank": 7.47619,
+    "top3_rate": 0.06944,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Mango",
+    "mention_rate": 0.29167,
+    "mr_lo": 0.15278,
+    "mr_hi": 0.44444,
+    "share_of_voice": 0.02061,
+    "sov_lo": 0.01101,
+    "sov_hi": 0.03095,
+    "mean_rank": 10.57143,
+    "top3_rate": 0.02778,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Theory",
+    "mention_rate": 0.29167,
+    "mr_lo": 0.13889,
+    "mr_hi": 0.45833,
+    "share_of_voice": 0.02061,
+    "sov_lo": 0.0106,
+    "sov_hi": 0.03102,
+    "mean_rank": 6.52381,
+    "top3_rate": 0.11111,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Quince",
+    "mention_rate": 0.29167,
+    "mr_lo": 0.15278,
+    "mr_hi": 0.44444,
+    "share_of_voice": 0.02061,
+    "sov_lo": 0.01125,
+    "sov_hi": 0.03116,
+    "mean_rank": 7.61905,
+    "top3_rate": 0.06944,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Banana Republic",
+    "mention_rate": 0.27778,
+    "mr_lo": 0.125,
+    "mr_hi": 0.44444,
+    "share_of_voice": 0.01963,
+    "sov_lo": 0.00975,
+    "sov_hi": 0.02941,
+    "mean_rank": 10.35,
+    "top3_rate": 0.0,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Ann Taylor",
+    "mention_rate": 0.26389,
+    "mr_lo": 0.125,
+    "mr_hi": 0.43056,
+    "share_of_voice": 0.01865,
+    "sov_lo": 0.00922,
+    "sov_hi": 0.02833,
+    "mean_rank": 10.0,
+    "top3_rate": 0.0,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "ASOS",
+    "mention_rate": 0.25,
+    "mr_lo": 0.09722,
+    "mr_hi": 0.41667,
+    "share_of_voice": 0.01766,
+    "sov_lo": 0.00757,
+    "sov_hi": 0.02806,
+    "mean_rank": 9.72222,
+    "top3_rate": 0.05556,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Gap",
+    "mention_rate": 0.23611,
+    "mr_lo": 0.11111,
+    "mr_hi": 0.375,
+    "share_of_voice": 0.01668,
+    "sov_lo": 0.00822,
+    "sov_hi": 0.02637,
+    "mean_rank": 9.17647,
+    "top3_rate": 0.02778,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Macy's",
+    "mention_rate": 0.23611,
+    "mr_lo": 0.09722,
+    "mr_hi": 0.38889,
+    "share_of_voice": 0.01668,
+    "sov_lo": 0.00735,
+    "sov_hi": 0.02622,
+    "mean_rank": 13.05882,
+    "top3_rate": 0.02778,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Athleta",
+    "mention_rate": 0.22222,
+    "mr_lo": 0.08333,
+    "mr_hi": 0.38889,
+    "share_of_voice": 0.0157,
+    "sov_lo": 0.00525,
+    "sov_hi": 0.02846,
+    "mean_rank": 7.25,
+    "top3_rate": 0.04167,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Neiman Marcus",
+    "mention_rate": 0.22222,
+    "mr_lo": 0.08333,
+    "mr_hi": 0.375,
+    "share_of_voice": 0.0157,
+    "sov_lo": 0.00618,
+    "sov_hi": 0.02479,
+    "mean_rank": 9.75,
+    "top3_rate": 0.0,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Bloomingdale's",
+    "mention_rate": 0.22222,
+    "mr_lo": 0.08333,
+    "mr_hi": 0.375,
+    "share_of_voice": 0.0157,
+    "sov_lo": 0.00609,
+    "sov_hi": 0.02518,
+    "mean_rank": 12.3125,
+    "top3_rate": 0.02778,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "LOFT",
+    "mention_rate": 0.19444,
+    "mr_lo": 0.08333,
+    "mr_hi": 0.33333,
+    "share_of_voice": 0.01374,
+    "sov_lo": 0.00598,
+    "sov_hi": 0.02247,
+    "mean_rank": 10.35714,
+    "top3_rate": 0.0,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Old Navy",
+    "mention_rate": 0.18056,
+    "mr_lo": 0.06944,
+    "mr_hi": 0.31944,
+    "share_of_voice": 0.01276,
+    "sov_lo": 0.00452,
+    "sov_hi": 0.02279,
+    "mean_rank": 9.76923,
+    "top3_rate": 0.01389,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "ThredUp",
+    "mention_rate": 0.18056,
+    "mr_lo": 0.05556,
+    "mr_hi": 0.31979,
+    "share_of_voice": 0.01276,
+    "sov_lo": 0.00408,
+    "sov_hi": 0.02182,
+    "mean_rank": 17.84615,
+    "top3_rate": 0.0,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Shopbop",
+    "mention_rate": 0.16667,
+    "mr_lo": 0.05556,
+    "mr_hi": 0.30556,
+    "share_of_voice": 0.01178,
+    "sov_lo": 0.004,
+    "sov_hi": 0.02005,
+    "mean_rank": 12.66667,
+    "top3_rate": 0.0,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Abercrombie & Fitch",
+    "mention_rate": 0.16667,
+    "mr_lo": 0.06944,
+    "mr_hi": 0.27778,
+    "share_of_voice": 0.01178,
+    "sov_lo": 0.00464,
+    "sov_hi": 0.01971,
+    "mean_rank": 7.75,
+    "top3_rate": 0.02778,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Poshmark",
+    "mention_rate": 0.16667,
+    "mr_lo": 0.05556,
+    "mr_hi": 0.30556,
+    "share_of_voice": 0.01178,
+    "sov_lo": 0.00386,
+    "sov_hi": 0.02023,
+    "mean_rank": 18.16667,
+    "top3_rate": 0.0,
+    "n_answers": 72,
+    "n_prompts": 24
+   }
+  ],
+  "gemini-flash-search": [
+   {
+    "brand": "Aritzia",
+    "mention_rate": 0.45833,
+    "mr_lo": 0.30556,
+    "mr_hi": 0.61111,
+    "share_of_voice": 0.04382,
+    "sov_lo": 0.03046,
+    "sov_hi": 0.05775,
+    "mean_rank": 5.57576,
+    "top3_rate": 0.15278,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Uniqlo",
+    "mention_rate": 0.43056,
+    "mr_lo": 0.27778,
+    "mr_hi": 0.58333,
+    "share_of_voice": 0.04117,
+    "sov_lo": 0.02735,
+    "sov_hi": 0.05569,
+    "mean_rank": 6.54839,
+    "top3_rate": 0.18056,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Quince",
+    "mention_rate": 0.40278,
+    "mr_lo": 0.25,
+    "mr_hi": 0.56944,
+    "share_of_voice": 0.03851,
+    "sov_lo": 0.02532,
+    "sov_hi": 0.0517,
+    "mean_rank": 5.31034,
+    "top3_rate": 0.19444,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Everlane",
+    "mention_rate": 0.38889,
+    "mr_lo": 0.23611,
+    "mr_hi": 0.55556,
+    "share_of_voice": 0.03718,
+    "sov_lo": 0.02384,
+    "sov_hi": 0.05057,
+    "mean_rank": 5.10714,
+    "top3_rate": 0.11111,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Reformation",
+    "mention_rate": 0.375,
+    "mr_lo": 0.22222,
+    "mr_hi": 0.52778,
+    "share_of_voice": 0.03586,
+    "sov_lo": 0.02214,
+    "sov_hi": 0.05014,
+    "mean_rank": 7.37037,
+    "top3_rate": 0.05556,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Nordstrom",
+    "mention_rate": 0.375,
+    "mr_lo": 0.22222,
+    "mr_hi": 0.52778,
+    "share_of_voice": 0.03586,
+    "sov_lo": 0.02262,
+    "sov_hi": 0.04829,
+    "mean_rank": 6.96296,
+    "top3_rate": 0.11111,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Eileen Fisher",
+    "mention_rate": 0.36111,
+    "mr_lo": 0.19444,
+    "mr_hi": 0.54167,
+    "share_of_voice": 0.03453,
+    "sov_lo": 0.01894,
+    "sov_hi": 0.05135,
+    "mean_rank": 6.15385,
+    "top3_rate": 0.09722,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "COS",
+    "mention_rate": 0.33333,
+    "mr_lo": 0.18056,
+    "mr_hi": 0.5,
+    "share_of_voice": 0.03187,
+    "sov_lo": 0.01859,
+    "sov_hi": 0.04529,
+    "mean_rank": 6.25,
+    "top3_rate": 0.08333,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Spanx",
+    "mention_rate": 0.26389,
+    "mr_lo": 0.125,
+    "mr_hi": 0.40278,
+    "share_of_voice": 0.02523,
+    "sov_lo": 0.01293,
+    "sov_hi": 0.03759,
+    "mean_rank": 7.94737,
+    "top3_rate": 0.02778,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Madewell",
+    "mention_rate": 0.26389,
+    "mr_lo": 0.13889,
+    "mr_hi": 0.40278,
+    "share_of_voice": 0.02523,
+    "sov_lo": 0.01348,
+    "sov_hi": 0.03747,
+    "mean_rank": 7.15789,
+    "top3_rate": 0.02778,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "J.Crew",
+    "mention_rate": 0.25,
+    "mr_lo": 0.11111,
+    "mr_hi": 0.41667,
+    "share_of_voice": 0.0239,
+    "sov_lo": 0.01099,
+    "sov_hi": 0.0359,
+    "mean_rank": 7.38889,
+    "top3_rate": 0.04167,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "H&M",
+    "mention_rate": 0.23611,
+    "mr_lo": 0.11111,
+    "mr_hi": 0.38889,
+    "share_of_voice": 0.02258,
+    "sov_lo": 0.01038,
+    "sov_hi": 0.03611,
+    "mean_rank": 6.70588,
+    "top3_rate": 0.06944,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Ann Taylor",
+    "mention_rate": 0.22222,
+    "mr_lo": 0.08333,
+    "mr_hi": 0.375,
+    "share_of_voice": 0.02125,
+    "sov_lo": 0.00811,
+    "sov_hi": 0.03444,
+    "mean_rank": 7.75,
+    "top3_rate": 0.04167,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Zara",
+    "mention_rate": 0.22222,
+    "mr_lo": 0.09722,
+    "mr_hi": 0.36111,
+    "share_of_voice": 0.02125,
+    "sov_lo": 0.00983,
+    "sov_hi": 0.03329,
+    "mean_rank": 6.875,
+    "top3_rate": 0.08333,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Vince",
+    "mention_rate": 0.20833,
+    "mr_lo": 0.08333,
+    "mr_hi": 0.36111,
+    "share_of_voice": 0.01992,
+    "sov_lo": 0.00841,
+    "sov_hi": 0.03152,
+    "mean_rank": 9.33333,
+    "top3_rate": 0.04167,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Abercrombie & Fitch",
+    "mention_rate": 0.20833,
+    "mr_lo": 0.08333,
+    "mr_hi": 0.34722,
+    "share_of_voice": 0.01992,
+    "sov_lo": 0.00911,
+    "sov_hi": 0.03189,
+    "mean_rank": 6.0,
+    "top3_rate": 0.05556,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Banana Republic",
+    "mention_rate": 0.20833,
+    "mr_lo": 0.08333,
+    "mr_hi": 0.34722,
+    "share_of_voice": 0.01992,
+    "sov_lo": 0.00849,
+    "sov_hi": 0.03237,
+    "mean_rank": 9.46667,
+    "top3_rate": 0.05556,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Mango",
+    "mention_rate": 0.19444,
+    "mr_lo": 0.08333,
+    "mr_hi": 0.31944,
+    "share_of_voice": 0.01859,
+    "sov_lo": 0.00895,
+    "sov_hi": 0.02926,
+    "mean_rank": 7.85714,
+    "top3_rate": 0.04167,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Old Navy",
+    "mention_rate": 0.19444,
+    "mr_lo": 0.09722,
+    "mr_hi": 0.30556,
+    "share_of_voice": 0.01859,
+    "sov_lo": 0.01051,
+    "sov_hi": 0.02735,
+    "mean_rank": 10.14286,
+    "top3_rate": 0.0,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Tot\u00eame",
+    "mention_rate": 0.19444,
+    "mr_lo": 0.08333,
+    "mr_hi": 0.31944,
+    "share_of_voice": 0.01859,
+    "sov_lo": 0.00932,
+    "sov_hi": 0.02886,
+    "mean_rank": 7.57143,
+    "top3_rate": 0.05556,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Lululemon",
+    "mention_rate": 0.15278,
+    "mr_lo": 0.04167,
+    "mr_hi": 0.27778,
+    "share_of_voice": 0.01461,
+    "sov_lo": 0.00418,
+    "sov_hi": 0.02696,
+    "mean_rank": 5.36364,
+    "top3_rate": 0.05556,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Skims",
+    "mention_rate": 0.15278,
+    "mr_lo": 0.02778,
+    "mr_hi": 0.29167,
+    "share_of_voice": 0.01461,
+    "sov_lo": 0.00294,
+    "sov_hi": 0.0279,
+    "mean_rank": 4.72727,
+    "top3_rate": 0.06944,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Buck Mason",
+    "mention_rate": 0.15278,
+    "mr_lo": 0.04167,
+    "mr_hi": 0.30556,
+    "share_of_voice": 0.01461,
+    "sov_lo": 0.0037,
+    "sov_hi": 0.02793,
+    "mean_rank": 6.0,
+    "top3_rate": 0.05556,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Naadam",
+    "mention_rate": 0.13889,
+    "mr_lo": 0.02778,
+    "mr_hi": 0.27778,
+    "share_of_voice": 0.01328,
+    "sov_lo": 0.00293,
+    "sov_hi": 0.02525,
+    "mean_rank": 7.4,
+    "top3_rate": 0.05556,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Pact",
+    "mention_rate": 0.13889,
+    "mr_lo": 0.04167,
+    "mr_hi": 0.26389,
+    "share_of_voice": 0.01328,
+    "sov_lo": 0.0039,
+    "sov_hi": 0.02593,
+    "mean_rank": 7.5,
+    "top3_rate": 0.01389,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Neiman Marcus",
+    "mention_rate": 0.125,
+    "mr_lo": 0.04167,
+    "mr_hi": 0.23611,
+    "share_of_voice": 0.01195,
+    "sov_lo": 0.00383,
+    "sov_hi": 0.02079,
+    "mean_rank": 8.0,
+    "top3_rate": 0.05556,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Athleta",
+    "mention_rate": 0.125,
+    "mr_lo": 0.01389,
+    "mr_hi": 0.25,
+    "share_of_voice": 0.01195,
+    "sov_lo": 0.00163,
+    "sov_hi": 0.02459,
+    "mean_rank": 5.22222,
+    "top3_rate": 0.06944,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Express",
+    "mention_rate": 0.125,
+    "mr_lo": 0.04167,
+    "mr_hi": 0.23611,
+    "share_of_voice": 0.01195,
+    "sov_lo": 0.0038,
+    "sov_hi": 0.02135,
+    "mean_rank": 8.0,
+    "top3_rate": 0.01389,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Free People",
+    "mention_rate": 0.125,
+    "mr_lo": 0.02778,
+    "mr_hi": 0.25,
+    "share_of_voice": 0.01195,
+    "sov_lo": 0.00259,
+    "sov_hi": 0.02368,
+    "mean_rank": 8.77778,
+    "top3_rate": 0.04167,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   {
+    "brand": "Boden",
+    "mention_rate": 0.11111,
+    "mr_lo": 0.04167,
+    "mr_hi": 0.19444,
+    "share_of_voice": 0.01062,
+    "sov_lo": 0.00395,
+    "sov_hi": 0.01836,
+    "mean_rank": 8.625,
+    "top3_rate": 0.02778,
+    "n_answers": 72,
+    "n_prompts": 24
+   }
+  ]
+ },
+ "focus_rank": {
+  "gemini-flash": {
+   "by_mention_rate": 3,
+   "by_share_of_voice": 3,
+   "n_brands_seen": 88
+  },
+  "gemini-flash-search": {
+   "by_mention_rate": 1,
+   "by_share_of_voice": 1,
+   "n_brands_seen": 88
+  }
+ },
+ "focus_by_intent": [
+  {
+   "surface": "gemini-flash",
+   "intent": "alternative",
+   "rate": 1.0,
+   "lo": 1.0,
+   "hi": 1.0,
+   "n_answers": 18,
+   "n_prompts": 6
+  },
+  {
+   "surface": "gemini-flash",
+   "intent": "discovery",
+   "rate": 0.56944,
+   "lo": 0.38889,
+   "hi": 0.73611,
+   "n_answers": 72,
+   "n_prompts": 24
+  },
+  {
+   "surface": "gemini-flash",
+   "intent": "reputation",
+   "rate": 1.0,
+   "lo": 1.0,
+   "hi": 1.0,
+   "n_answers": 12,
+   "n_prompts": 4
+  },
+  {
+   "surface": "gemini-flash",
+   "intent": "versus",
+   "rate": 1.0,
+   "lo": 1.0,
+   "hi": 1.0,
+   "n_answers": 18,
+   "n_prompts": 6
+  },
+  {
+   "surface": "gemini-flash-search",
+   "intent": "alternative",
+   "rate": 1.0,
+   "lo": 1.0,
+   "hi": 1.0,
+   "n_answers": 18,
+   "n_prompts": 6
+  },
+  {
+   "surface": "gemini-flash-search",
+   "intent": "discovery",
+   "rate": 0.45833,
+   "lo": 0.30556,
+   "hi": 0.61111,
+   "n_answers": 72,
+   "n_prompts": 24
+  },
+  {
+   "surface": "gemini-flash-search",
+   "intent": "reputation",
+   "rate": 1.0,
+   "lo": 1.0,
+   "hi": 1.0,
+   "n_answers": 12,
+   "n_prompts": 4
+  },
+  {
+   "surface": "gemini-flash-search",
+   "intent": "versus",
+   "rate": 1.0,
+   "lo": 1.0,
+   "hi": 1.0,
+   "n_answers": 18,
+   "n_prompts": 6
+  }
+ ],
+ "focus_by_topic": [
+  {
+   "topic": "activewear",
+   "surface": "gemini-flash",
+   "rate": 0.0,
+   "n_answers": 3,
+   "n_prompts": 1
+  },
+  {
+   "topic": "activewear",
+   "surface": "gemini-flash-search",
+   "rate": 0.0,
+   "n_answers": 3,
+   "n_prompts": 1
+  },
+  {
+   "topic": "basics",
+   "surface": "gemini-flash",
+   "rate": 0.8889,
+   "n_answers": 9,
+   "n_prompts": 3
+  },
+  {
+   "topic": "basics",
+   "surface": "gemini-flash-search",
+   "rate": 0.6667,
+   "n_answers": 9,
+   "n_prompts": 3
+  },
+  {
+   "topic": "canada",
+   "surface": "gemini-flash",
+   "rate": 1.0,
+   "n_answers": 6,
+   "n_prompts": 2
+  },
+  {
+   "topic": "canada",
+   "surface": "gemini-flash-search",
+   "rate": 1.0,
+   "n_answers": 6,
+   "n_prompts": 2
+  },
+  {
+   "topic": "capsule",
+   "surface": "gemini-flash",
+   "rate": 1.0,
+   "n_answers": 3,
+   "n_prompts": 1
+  },
+  {
+   "topic": "capsule",
+   "surface": "gemini-flash-search",
+   "rate": 0.6667,
+   "n_answers": 3,
+   "n_prompts": 1
+  },
+  {
+   "topic": "denim",
+   "surface": "gemini-flash",
+   "rate": 0.0,
+   "n_answers": 3,
+   "n_prompts": 1
+  },
+  {
+   "topic": "denim",
+   "surface": "gemini-flash-search",
+   "rate": 0.0,
+   "n_answers": 3,
+   "n_prompts": 1
+  },
+  {
+   "topic": "dresses",
+   "surface": "gemini-flash",
+   "rate": 0.8333,
+   "n_answers": 6,
+   "n_prompts": 2
+  },
+  {
+   "topic": "dresses",
+   "surface": "gemini-flash-search",
+   "rate": 0.0,
+   "n_answers": 6,
+   "n_prompts": 2
+  },
+  {
+   "topic": "gifts",
+   "surface": "gemini-flash",
+   "rate": 0.0,
+   "n_answers": 3,
+   "n_prompts": 1
+  },
+  {
+   "topic": "gifts",
+   "surface": "gemini-flash-search",
+   "rate": 0.3333,
+   "n_answers": 3,
+   "n_prompts": 1
+  },
+  {
+   "topic": "knitwear",
+   "surface": "gemini-flash",
+   "rate": 0.0,
+   "n_answers": 3,
+   "n_prompts": 1
+  },
+  {
+   "topic": "knitwear",
+   "surface": "gemini-flash-search",
+   "rate": 0.0,
+   "n_answers": 3,
+   "n_prompts": 1
+  },
+  {
+   "topic": "loungewear",
+   "surface": "gemini-flash",
+   "rate": 0.3333,
+   "n_answers": 3,
+   "n_prompts": 1
+  },
+  {
+   "topic": "loungewear",
+   "surface": "gemini-flash-search",
+   "rate": 0.0,
+   "n_answers": 3,
+   "n_prompts": 1
+  },
+  {
+   "topic": "outerwear",
+   "surface": "gemini-flash",
+   "rate": 0.3333,
+   "n_answers": 6,
+   "n_prompts": 2
+  },
+  {
+   "topic": "outerwear",
+   "surface": "gemini-flash-search",
+   "rate": 0.6667,
+   "n_answers": 6,
+   "n_prompts": 2
+  },
+  {
+   "topic": "price",
+   "surface": "gemini-flash",
+   "rate": 0.5556,
+   "n_answers": 9,
+   "n_prompts": 3
+  },
+  {
+   "topic": "price",
+   "surface": "gemini-flash-search",
+   "rate": 0.5556,
+   "n_answers": 9,
+   "n_prompts": 3
+  },
+  {
+   "topic": "sustain",
+   "surface": "gemini-flash",
+   "rate": 0.3333,
+   "n_answers": 3,
+   "n_prompts": 1
+  },
+  {
+   "topic": "sustain",
+   "surface": "gemini-flash-search",
+   "rate": 0.3333,
+   "n_answers": 3,
+   "n_prompts": 1
+  },
+  {
+   "topic": "travel",
+   "surface": "gemini-flash",
+   "rate": 0.0,
+   "n_answers": 3,
+   "n_prompts": 1
+  },
+  {
+   "topic": "travel",
+   "surface": "gemini-flash-search",
+   "rate": 0.0,
+   "n_answers": 3,
+   "n_prompts": 1
+  },
+  {
+   "topic": "trend",
+   "surface": "gemini-flash",
+   "rate": 0.8333,
+   "n_answers": 6,
+   "n_prompts": 2
+  },
+  {
+   "topic": "trend",
+   "surface": "gemini-flash-search",
+   "rate": 0.6667,
+   "n_answers": 6,
+   "n_prompts": 2
+  },
+  {
+   "topic": "workwear",
+   "surface": "gemini-flash",
+   "rate": 0.8333,
+   "n_answers": 6,
+   "n_prompts": 2
+  },
+  {
+   "topic": "workwear",
+   "surface": "gemini-flash-search",
+   "rate": 0.6667,
+   "n_answers": 6,
+   "n_prompts": 2
+  }
+ ],
+ "surface_comparison": {
+  "focus_mention": {
+   "mean_diff_search_minus_plain": -0.11111111111111109,
+   "lo": -0.25,
+   "hi": 0.02777777777777778,
+   "p_value": 0.207763671875,
+   "n_prompts": 24,
+   "n_prompts_differing": 13,
+   "sd_of_diffs": 0.36338008829162294,
+   "mde_80pct": 0.20768901976712775,
+   "plain_mean": 0.5694444444444443,
+   "search_mean": 0.4583333333333333
+  },
+  "brands_per_answer": {
+   "mean_diff_search_minus_plain": -3.694444444444444,
+   "lo": -5.4170138888888895,
+   "hi": -2.027430555555554,
+   "p_value": 0.00034998250087495624,
+   "n_prompts": 24,
+   "n_prompts_differing": 24,
+   "sd_of_diffs": 4.3726385391295315,
+   "mde_80pct": 2.4991710917824483,
+   "plain_mean": 14.152777777777777,
+   "search_mean": 10.458333333333334
+  }
+ },
+ "vs_competitors": {
+  "gemini-flash": [
+   {
+    "competitor": "Everlane",
+    "diff": -0.041666666666666685,
+    "lo": -0.2638888888888889,
+    "hi": 0.18055555555555555,
+    "p": 0.810791015625,
+    "p_holm": 1.0
+   },
+   {
+    "competitor": "H&M",
+    "diff": -0.041666666666666685,
+    "lo": -0.22222222222222224,
+    "hi": 0.1527777777777778,
+    "p": 0.77734375,
+    "p_holm": 1.0
+   },
+   {
+    "competitor": "Zara",
+    "diff": 0.06944444444444445,
+    "lo": -0.12500000000000003,
+    "hi": 0.2777777777777778,
+    "p": 0.61224365234375,
+    "p_holm": 1.0
+   },
+   {
+    "competitor": "Nordstrom",
+    "diff": 0.1111111111111111,
+    "lo": -0.15277777777777782,
+    "hi": 0.375,
+    "p": 0.47617619119044047,
+    "p_holm": 1.0
+   },
+   {
+    "competitor": "Uniqlo",
+    "diff": 0.125,
+    "lo": -0.06944444444444446,
+    "hi": 0.3333333333333333,
+    "p": 0.297607421875,
+    "p_holm": 1.0
+   },
+   {
+    "competitor": "J.Crew",
+    "diff": 0.125,
+    "lo": -0.06944444444444443,
+    "hi": 0.3194444444444444,
+    "p": 0.278076171875,
+    "p_holm": 1.0
+   },
+   {
+    "competitor": "Madewell",
+    "diff": 0.15277777777777776,
+    "lo": -0.06944444444444446,
+    "hi": 0.375,
+    "p": 0.2529296875,
+    "p_holm": 1.0
+   },
+   {
+    "competitor": "COS",
+    "diff": 0.18055555555555555,
+    "lo": -0.041666666666666664,
+    "hi": 0.38888888888888884,
+    "p": 0.156982421875,
+    "p_holm": 1.0
+   },
+   {
+    "competitor": "Reformation",
+    "diff": 0.19444444444444442,
+    "lo": -9.25185853854297e-18,
+    "hi": 0.3888888888888889,
+    "p": 0.092987060546875,
+    "p_holm": 0.92987060546875
+   },
+   {
+    "competitor": "Lululemon",
+    "diff": 0.20833333333333334,
+    "lo": -0.04166666666666665,
+    "hi": 0.4444444444444444,
+    "p": 0.1300048828125,
+    "p_holm": 1.0
+   }
+  ],
+  "gemini-flash-search": [
+   {
+    "competitor": "Uniqlo",
+    "diff": 0.027777777777777776,
+    "lo": -0.18055555555555558,
+    "hi": 0.25,
+    "p": 0.9021048947552622,
+    "p_holm": 1.0
+   },
+   {
+    "competitor": "Quince",
+    "diff": 0.05555555555555553,
+    "lo": -0.1527777777777778,
+    "hi": 0.27777777777777773,
+    "p": 0.717864990234375,
+    "p_holm": 1.0
+   },
+   {
+    "competitor": "Everlane",
+    "diff": 0.06944444444444443,
+    "lo": -0.125,
+    "hi": 0.2777777777777778,
+    "p": 0.6180190990450477,
+    "p_holm": 1.0
+   },
+   {
+    "competitor": "Reformation",
+    "diff": 0.08333333333333333,
+    "lo": -0.11111111111111109,
+    "hi": 0.2777777777777778,
+    "p": 0.505859375,
+    "p_holm": 1.0
+   },
+   {
+    "competitor": "Nordstrom",
+    "diff": 0.08333333333333333,
+    "lo": -0.125,
+    "hi": 0.3055555555555556,
+    "p": 0.5428728563571822,
+    "p_holm": 1.0
+   },
+   {
+    "competitor": "Eileen Fisher",
+    "diff": 0.09722222222222221,
+    "lo": -0.125,
+    "hi": 0.3194444444444444,
+    "p": 0.484649658203125,
+    "p_holm": 1.0
+   },
+   {
+    "competitor": "COS",
+    "diff": 0.125,
+    "lo": -0.05555555555555556,
+    "hi": 0.3194444444444445,
+    "p": 0.2982177734375,
+    "p_holm": 1.0
+   },
+   {
+    "competitor": "Spanx",
+    "diff": 0.19444444444444442,
+    "lo": -0.013888888888888881,
+    "hi": 0.40277777777777773,
+    "p": 0.10414479276036198,
+    "p_holm": 0.8331583420828959
+   },
+   {
+    "competitor": "Madewell",
+    "diff": 0.19444444444444442,
+    "lo": 0.013888888888888881,
+    "hi": 0.3888888888888889,
+    "p": 0.087158203125,
+    "p_holm": 0.81634521484375
+   },
+   {
+    "competitor": "J.Crew",
+    "diff": 0.20833333333333334,
+    "lo": 0.0,
+    "hi": 0.4166666666666667,
+    "p": 0.081634521484375,
+    "p_holm": 0.81634521484375
+   }
+  ]
+ },
+ "stability": [
+  {
+   "surface": "gemini-flash",
+   "intent": "alternative",
+   "jaccard_all": 0.5807,
+   "jaccard_topk": 0.4978
+  },
+  {
+   "surface": "gemini-flash",
+   "intent": "discovery",
+   "jaccard_all": 0.6001,
+   "jaccard_topk": 0.5041
+  },
+  {
+   "surface": "gemini-flash",
+   "intent": "reputation",
+   "jaccard_all": 0.6786,
+   "jaccard_topk": 0.6833
+  },
+  {
+   "surface": "gemini-flash",
+   "intent": "versus",
+   "jaccard_all": 0.8704,
+   "jaccard_topk": 0.8704
+  },
+  {
+   "surface": "gemini-flash-search",
+   "intent": "alternative",
+   "jaccard_all": 0.6032,
+   "jaccard_topk": 0.5505
+  },
+  {
+   "surface": "gemini-flash-search",
+   "intent": "discovery",
+   "jaccard_all": 0.4836,
+   "jaccard_topk": 0.4254
+  },
+  {
+   "surface": "gemini-flash-search",
+   "intent": "reputation",
+   "jaccard_all": 0.8796,
+   "jaccard_topk": 0.8621
+  },
+  {
+   "surface": "gemini-flash-search",
+   "intent": "versus",
+   "jaccard_all": 0.963,
+   "jaccard_topk": 0.963
+  }
+ ],
+ "focus_consistency": {
+  "gemini-flash": {
+   "always": 9,
+   "never": 7,
+   "sometimes": 8,
+   "n_prompts": 24
+  },
+  "gemini-flash-search": {
+   "always": 7,
+   "never": 7,
+   "sometimes": 10,
+   "n_prompts": 24
+  }
+ },
+ "variance": {
+  "gemini-flash": {
+   "icc": 0.5601593625498006,
+   "sigma_between": 0.14150563607085342,
+   "sigma_within": 0.11111111111111115,
+   "n_prompts": 24.0,
+   "runs": 3.0,
+   "prompts_for_se5_with_3_runs": 72,
+   "prompts_for_se5_with_30_runs": 59,
+   "runs_for_se8": 10,
+   "runs_for_se5": null
+  },
+  "gemini-flash-search": {
+   "icc": 0.4554064719810576,
+   "sigma_between": 0.11614331723027378,
+   "sigma_within": 0.13888888888888892,
+   "n_prompts": 24.0,
+   "runs": 3.0,
+   "prompts_for_se5_with_3_runs": 65,
+   "prompts_for_se5_with_30_runs": 49,
+   "runs_for_se8": 4,
+   "runs_for_se5": null
+  }
+ },
+ "design": {
+  "gemini-flash": {
+   "runs_grid": [
+    1,
+    2,
+    3,
+    5,
+    10,
+    20,
+    50,
+    100
+   ],
+   "se_by_runs": [
+    0.10259482345249454,
+    0.09061392268538929,
+    0.0862512495339175,
+    0.08259536364436457,
+    0.07974353348442653,
+    0.07827866664104834,
+    0.07738643784418227,
+    0.0770867333976164
+   ],
+   "prompts_grid": [
+    12,
+    24,
+    36,
+    48,
+    72,
+    96,
+    144,
+    200
+   ],
+   "se_by_prompts": [
+    0.12197768686249222,
+    0.0862512495339175,
+    0.07042385034518776,
+    0.06098884343124611,
+    0.04979718213634885,
+    0.04312562476695875,
+    0.03521192517259388,
+    0.02987830928180931
+   ]
+  },
+  "gemini-flash-search": {
+   "runs_grid": [
+    1,
+    2,
+    3,
+    5,
+    10,
+    20,
+    50,
+    100
+   ],
+   "se_by_runs": [
+    0.10308414971096079,
+    0.08793647367908984,
+    0.08226978321518633,
+    0.07743844195231558,
+    0.0736071232171075,
+    0.07161464051747096,
+    0.07039208496227031,
+    0.06997982034104626
+   ],
+   "prompts_grid": [
+    12,
+    24,
+    36,
+    48,
+    72,
+    96,
+    144,
+    200
+   ],
+   "se_by_prompts": [
+    0.11634704319641093,
+    0.08226978321518633,
+    0.06717299670886485,
+    0.05817352159820546,
+    0.04749848148545998,
+    0.04113489160759316,
+    0.03358649835443243,
+    0.028499088891275986
+   ]
+  }
+ },
+ "extractor": {
+  "kappa": 0.9626939110113113,
+  "agree": 0.9931003584229391,
+  "n_cells": 22320,
+  "per_brand": [
+   {
+    "brand": "H&M",
+    "dict_only": 22,
+    "llm_only": 0,
+    "both": 58
+   },
+   {
+    "brand": "Gap",
+    "dict_only": 11,
+    "llm_only": 3,
+    "both": 16
+   },
+   {
+    "brand": "Nordstrom",
+    "dict_only": 14,
+    "llm_only": 0,
+    "both": 46
+   },
+   {
+    "brand": "Amazon",
+    "dict_only": 13,
+    "llm_only": 0,
+    "both": 9
+   },
+   {
+    "brand": "Saks Fifth Avenue",
+    "dict_only": 8,
+    "llm_only": 0,
+    "both": 20
+   },
+   {
+    "brand": "Target",
+    "dict_only": 7,
+    "llm_only": 0,
+    "both": 13
+   },
+   {
+    "brand": "Vince",
+    "dict_only": 6,
+    "llm_only": 0,
+    "both": 39
+   },
+   {
+    "brand": "Macy's",
+    "dict_only": 6,
+    "llm_only": 0,
+    "both": 17
+   },
+   {
+    "brand": "Poshmark",
+    "dict_only": 6,
+    "llm_only": 0,
+    "both": 15
+   },
+   {
+    "brand": "Lululemon",
+    "dict_only": 5,
+    "llm_only": 0,
+    "both": 49
+   },
+   {
+    "brand": "Revolve",
+    "dict_only": 4,
+    "llm_only": 1,
+    "both": 10
+   },
+   {
+    "brand": "Zara",
+    "dict_only": 4,
+    "llm_only": 0,
+    "both": 80
+   }
+  ],
+  "focus_rate_dictionary": {
+   "gemini-flash": {
+    "rate": 0.5694444444444444,
+    "lo": 0.3888888888888889,
+    "hi": 0.7361111111111112,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   "gemini-flash-search": {
+    "rate": 0.4583333333333333,
+    "lo": 0.3055555555555556,
+    "hi": 0.6111111111111112,
+    "n_answers": 72,
+    "n_prompts": 24
+   }
+  },
+  "focus_rate_llm": {
+   "gemini-flash": {
+    "rate": 0.5694444444444444,
+    "lo": 0.3888888888888889,
+    "hi": 0.7361111111111112,
+    "n_answers": 72,
+    "n_prompts": 24
+   },
+   "gemini-flash-search": {
+    "rate": 0.4583333333333333,
+    "lo": 0.3055555555555556,
+    "hi": 0.6111111111111112,
+    "n_answers": 72,
+    "n_prompts": 24
+   }
+  },
+  "untracked_share_of_llm_mentions": 0.4122760800842993,
+  "top_untracked": {
+   "Smythe": 9,
+   "Mackage": 9,
+   "TJ Maxx": 9,
+   "The RealReal": 9,
+   "eBay": 9,
+   "Khaite": 8,
+   "Calvin Klein": 8,
+   "Dillard's": 8,
+   "Marshalls": 8,
+   "M.M.LaFleur": 8,
+   "REI Co-op": 8,
+   "Farm Rio": 8,
+   "Rent the Runway": 8,
+   "Prada": 7,
+   "Staud": 7
+  }
+ },
+ "sentiment": [
+  {
+   "surface": "gemini-flash",
+   "intent": "alternative",
+   "n": 18,
+   "positive": 9,
+   "neutral": 9,
+   "mixed": 0,
+   "negative": 0,
+   "recommended": 0.0
+  },
+  {
+   "surface": "gemini-flash",
+   "intent": "discovery",
+   "n": 41,
+   "positive": 41,
+   "neutral": 0,
+   "mixed": 0,
+   "negative": 0,
+   "recommended": 0.975609756097561
+  },
+  {
+   "surface": "gemini-flash",
+   "intent": "reputation",
+   "n": 12,
+   "positive": 0,
+   "neutral": 0,
+   "mixed": 12,
+   "negative": 0,
+   "recommended": 0.25
+  },
+  {
+   "surface": "gemini-flash",
+   "intent": "versus",
+   "n": 18,
+   "positive": 11,
+   "neutral": 0,
+   "mixed": 7,
+   "negative": 0,
+   "recommended": 0.7777777777777778
+  },
+  {
+   "surface": "gemini-flash-search",
+   "intent": "alternative",
+   "n": 17,
+   "positive": 2,
+   "neutral": 15,
+   "mixed": 0,
+   "negative": 0,
+   "recommended": 0.0
+  },
+  {
+   "surface": "gemini-flash-search",
+   "intent": "discovery",
+   "n": 33,
+   "positive": 31,
+   "neutral": 2,
+   "mixed": 0,
+   "negative": 0,
+   "recommended": 0.8181818181818182
+  },
+  {
+   "surface": "gemini-flash-search",
+   "intent": "reputation",
+   "n": 12,
+   "positive": 0,
+   "neutral": 0,
+   "mixed": 12,
+   "negative": 0,
+   "recommended": 0.16666666666666666
+  },
+  {
+   "surface": "gemini-flash-search",
+   "intent": "versus",
+   "n": 18,
+   "positive": 6,
+   "neutral": 0,
+   "mixed": 12,
+   "negative": 0,
+   "recommended": 0.5555555555555556
+  }
+ ],
+ "sources": {
+  "top": [
+   {
+    "domain": "reddit.com",
+    "citations": 144,
+    "share": 0.10028,
+    "answers": 65,
+    "category": "social / community"
+   },
+   {
+    "domain": "whowhatwear.com",
+    "citations": 82,
+    "share": 0.0571,
+    "answers": 66,
+    "category": "editorial / blogs"
+   },
+   {
+    "domain": "youtube.com",
+    "citations": 49,
+    "share": 0.03412,
+    "answers": 29,
+    "category": "social / community"
+   },
+   {
+    "domain": "nordstrom.com",
+    "citations": 39,
+    "share": 0.02716,
+    "answers": 29,
+    "category": "retailer or brand site"
+   },
+   {
+    "domain": "aritzia.com",
+    "citations": 32,
+    "share": 0.02228,
+    "answers": 19,
+    "category": "retailer or brand site"
+   },
+   {
+    "domain": "lemon8-app.com",
+    "citations": 30,
+    "share": 0.02089,
+    "answers": 20,
+    "category": "social / community"
+   },
+   {
+    "domain": "businessinsider.com",
+    "citations": 29,
+    "share": 0.02019,
+    "answers": 29,
+    "category": "editorial / blogs"
+   },
+   {
+    "domain": "thingtesting.com",
+    "citations": 28,
+    "share": 0.0195,
+    "answers": 20,
+    "category": "reviews"
+   },
+   {
+    "domain": "narcity.com",
+    "citations": 19,
+    "share": 0.01323,
+    "answers": 17,
+    "category": "editorial / blogs"
+   },
+   {
+    "domain": "trustpilot.com",
+    "citations": 19,
+    "share": 0.01323,
+    "answers": 10,
+    "category": "reviews"
+   },
+   {
+    "domain": "modernminimalism.com",
+    "citations": 15,
+    "share": 0.01045,
+    "answers": 15,
+    "category": "editorial / blogs"
+   },
+   {
+    "domain": "styledemocracy.com",
+    "citations": 15,
+    "share": 0.01045,
+    "answers": 15,
+    "category": "editorial / blogs"
+   },
+   {
+    "domain": "purewow.com",
+    "citations": 14,
+    "share": 0.00975,
+    "answers": 13,
+    "category": "editorial / blogs"
+   },
+   {
+    "domain": "gap.com",
+    "citations": 13,
+    "share": 0.00905,
+    "answers": 11,
+    "category": "retailer or brand site"
+   },
+   {
+    "domain": "forbes.com",
+    "citations": 12,
+    "share": 0.00836,
+    "answers": 12,
+    "category": "editorial / blogs"
+   }
+  ],
+  "category_share": {
+   "editorial / blogs": 0.665,
+   "retailer or brand site": 0.1442,
+   "reviews": 0.0334,
+   "social / community": 0.1574
+  },
+  "n_grounded_answers": 120,
+  "mean_citations_per_answer": 11.966666666666667,
+  "n_domains": 378,
+  "answers_citing_reddit": 65,
+  "focus_brand_site_share": 0.022284122562674095,
+  "answers_citing_focus_site": 19
+ }
+}

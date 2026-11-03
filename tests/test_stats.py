@@ -65,3 +65,12 @@ def test_jaccard_and_kappa():
     assert jaccard([], []) == 1.0
     assert cohens_kappa([1, 1, 0, 0], [1, 1, 0, 0]) == 1.0
     assert cohens_kappa([1, 0, 1, 0], [0, 1, 0, 1]) == -1.0
+
+
+def test_prompts_needed_inverts_se_formula():
+    from brandvis.stats import prompts_needed
+
+    p = prompts_needed(0.14, 0.11, runs=3, target_se=0.05)
+    assert se_of_mean(0.14, 0.11, p, 3) <= 0.05 < se_of_mean(0.14, 0.11, p - 1, 3)
+    # for a fixed target, more runs lower the prompt count only slightly: prompts, not runs, are the bottleneck
+    assert prompts_needed(0.14, 0.11, 30, 0.05) > 0.8 * prompts_needed(0.14, 0.11, 3, 0.05) * 0.5

@@ -101,3 +101,8 @@ def cohens_kappa(a, b) -> float:
     po = float(np.mean(a == b))
     pe = float(a.mean() * b.mean() + (1 - a.mean()) * (1 - b.mean()))
     return float((po - pe) / (1 - pe)) if pe < 1 else 1.0
+
+
+def prompts_needed(sigma_b2: float, sigma_w2: float, runs: int, target_se: float) -> int:
+    """Number of distinct prompts needed to reach ``target_se`` with ``runs`` answers per prompt."""
+    return int(np.ceil((sigma_b2 + sigma_w2 / runs) / target_se**2))

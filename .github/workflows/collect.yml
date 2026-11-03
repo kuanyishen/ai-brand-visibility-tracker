@@ -1,0 +1,36 @@
+name: collect
+# Manual by default so nothing spends API credits unexpectedly.
+# To track weekly, add a repository secret GEMINI_API_KEY (Settings > Secrets and variables > Actions)
+# and uncomment the schedule below.
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: "17 14 * * 1"   # Mondays 14:17 UTC
+permissions:
+  contents: write
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - run: pytest -q
+      - name: Collect, extract, analyse
+        run: |
+          BATCH=$(date -u +%F)
+          python -m brandvis.collect --batch "$BATCH" --workers 6 --rpm 60
+          python -m brandvis.extract --raw "data/raw/$BATCH.jsonl" --out "data/processed/$BATCH.jsonl" --workers 6 --rpm 60
+          python analysis/analyze.py --processed "data/processed/$BATCH.jsonl"
+          python analysis/build_site.py
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data docs
+          git commit -m "Weekly collection $(date -u +%F)" || echo "nothing to commit"
+          git push
