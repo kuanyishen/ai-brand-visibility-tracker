@@ -5,18 +5,22 @@ runs_per_prompt: 3          # repeats of every prompt per surface (stability nee
 temperature: 1.0            # default sampling temperature of consumer products is around 1
 surfaces:
   - id: gemini-flash
+    label: Gemini 2.5 Flash
     provider: gemini
     model: gemini-2.5-flash
     grounded: false         # model knowledge only
   - id: gemini-flash-search
+    label: Gemini 2.5 Flash + Search
     provider: gemini
     model: gemini-2.5-flash
     grounded: true          # same model, with Google Search grounding (what shoppers see in AI answers with sources)
   - id: claude-sonnet
+    label: Claude Sonnet 5.5
     provider: anthropic
     model: claude-sonnet-5-5
     grounded: false         # model knowledge only
   - id: claude-sonnet-search
+    label: Claude Sonnet 5.5 + Search
     provider: anthropic
     model: claude-sonnet-5-5
     grounded: true          # Claude with its server-side web search tool

@@ -36,6 +36,7 @@ class Surface:
     model: str
     grounded: bool = False
     runs: int | None = None      # repeats per prompt for this surface (default: study.runs_per_prompt)
+    label: str = ""              # human-readable name for charts and the dashboard
 
 
 @dataclass(frozen=True)
