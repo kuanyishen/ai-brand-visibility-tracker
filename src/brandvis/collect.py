@@ -58,7 +58,7 @@ def run(study: Study, prompts: list[Prompt], out: Path, batch: str, *, workers: 
         limit: int | None = None, provider_factory: Callable = make_provider, log: Callable = print) -> dict:
     out.parent.mkdir(parents=True, exist_ok=True)
     done = existing_keys(out)
-    jobs = [(p, s, i) for p in prompts for s in study.surfaces for i in range(study.runs_per_prompt)
+    jobs = [(p, s, i) for p in prompts for s in study.surfaces for i in range(s.runs or study.runs_per_prompt)
             if job_key(batch, p.id, s.id, i) not in done]
     if limit:
         jobs = jobs[:limit]

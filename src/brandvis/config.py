@@ -35,6 +35,7 @@ class Surface:
     provider: str
     model: str
     grounded: bool = False
+    runs: int | None = None      # repeats per prompt for this surface (default: study.runs_per_prompt)
 
 
 @dataclass(frozen=True)

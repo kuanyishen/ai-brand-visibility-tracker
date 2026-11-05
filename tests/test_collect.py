@@ -52,3 +52,14 @@ def test_daily_quota_stops_the_run(tmp_path):
     stats = run(STUDY, PROMPTS, out, "b1", workers=1, rpm=None, provider_factory=lambda p, m: shared, log=lambda *_: None)
     assert stats["quota_exhausted"] is True
     assert stats["ok"] <= 2
+
+
+def test_per_surface_repeat_counts(tmp_path):
+    study = Study("test", "Aritzia", 3, 1.0, (Surface("cheap", "fake", "m", False), Surface("costly", "fake", "m", True, runs=1)))
+    out = tmp_path / "raw.jsonl"
+    run(study, PROMPTS, out, "b1", workers=1, rpm=None, provider_factory=lambda p, m: Fake(), log=lambda *_: None)
+    recs = [json.loads(l) for l in out.read_text().splitlines()]
+    by = {}
+    for r in recs:
+        by.setdefault(r["surface"], []).append(r["run_index"])
+    assert len(by["cheap"]) == 6 and len(by["costly"]) == 2          # 2 prompts x (3 | 1) repeats
