@@ -50,7 +50,7 @@ python analysis/analyze.py && python analysis/build_site.py
 pytest
 ```
 The collector resumes where it stopped and halts cleanly when an API quota is exhausted. A full run is about 490k
-tokens. `.github/workflows/collect.yml` repeats it on demand (weekly schedule is included but commented out).
+tokens. `.github/workflows/collect.yml` runs collection on demand from the Actions tab (inputs: surfaces, limit, extract; the defaults are a 6-call smoke test; a weekly schedule is included but commented out). Repository secrets needed: `ANTHROPIC_API_KEY`, `GEMINI_API_KEY`.
 
 ## Limitations
 One model family on one day; API is not the consumer product; the prompt set is my design (a Canada-heavy mix favours

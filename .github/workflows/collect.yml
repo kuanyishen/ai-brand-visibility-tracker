@@ -1,18 +1,41 @@
 name: collect
 # Manual by default so nothing spends API credits unexpectedly.
-# To track weekly, add a repository secret GEMINI_API_KEY (Settings > Secrets and variables > Actions)
-# and uncomment the schedule below.
+# Needs repository secrets: ANTHROPIC_API_KEY (Claude surfaces) and GEMINI_API_KEY (Gemini surfaces and extraction).
+# The defaults below are a cheap SMOKE TEST: 6 Claude calls. For a full run set limit to 0 and clear "surfaces".
 on:
   workflow_dispatch:
+    inputs:
+      batch:
+        description: "Batch label (empty = today, UTC)"
+        required: false
+        default: ""
+      surfaces:
+        description: "Comma-separated surface ids (empty = all in config/study.yaml)"
+        required: false
+        default: "claude-sonnet,claude-sonnet-search"
+      limit:
+        description: "Max API calls (0 = no limit). Default 6 = smoke test"
+        required: false
+        default: "6"
+      extract:
+        description: "Also extract brands afterwards (needs GEMINI_API_KEY)"
+        type: boolean
+        required: false
+        default: false
   # schedule:
-  #   - cron: "17 14 * * 1"   # Mondays 14:17 UTC
+  #   - cron: "17 14 * * 1"   # Mondays 14:17 UTC (enable only for a full-run configuration)
 permissions:
   contents: write
 jobs:
   collect:
     runs-on: ubuntu-latest
     env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      IN_BATCH: ${{ inputs.batch }}
+      IN_SURFACES: ${{ inputs.surfaces }}
+      IN_LIMIT: ${{ inputs.limit }}
+      IN_EXTRACT: ${{ inputs.extract }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -20,17 +43,40 @@ jobs:
           python-version: "3.12"
       - run: pip install -e ".[dev]"
       - run: pytest -q
-      - name: Collect, extract, analyse
+      - name: Which keys are present (never prints them)
         run: |
-          BATCH=$(date -u +%F)
-          python -m brandvis.collect --batch "$BATCH" --workers 6 --rpm 60
-          python -m brandvis.extract --raw "data/raw/$BATCH.jsonl" --out "data/processed/$BATCH.jsonl" --workers 6 --rpm 60
-          python analysis/analyze.py --processed "data/processed/$BATCH.jsonl"
-          python analysis/build_site.py
+          [ -n "$ANTHROPIC_API_KEY" ] && echo "ANTHROPIC_API_KEY: set" || echo "ANTHROPIC_API_KEY: MISSING"
+          [ -n "$GEMINI_API_KEY" ] && echo "GEMINI_API_KEY: set" || echo "GEMINI_API_KEY: MISSING"
+      - name: Collect
+        run: |
+          BATCH="${IN_BATCH:-$(date -u +%F)}"
+          echo "BATCH=$BATCH" >> "$GITHUB_ENV"
+          ARGS=(--batch "$BATCH" --workers 4 --rpm 40)
+          [ -n "$IN_SURFACES" ] && ARGS+=(--surfaces "$IN_SURFACES")
+          [ "${IN_LIMIT:-0}" != "0" ] && ARGS+=(--limit "$IN_LIMIT")
+          python -m brandvis.collect "${ARGS[@]}"
+      - name: Extract brands
+        if: ${{ inputs.extract }}
+        run: python -m brandvis.extract --raw "data/raw/$BATCH.jsonl" --out "data/processed/$BATCH.jsonl" --workers 4 --rpm 40
+      - name: Show a sample so the run is easy to inspect
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          p = pathlib.Path(f"data/raw/{os.environ.get('BATCH','')}.jsonl")
+          if p.exists():
+              for l in p.read_text().splitlines()[:6]:
+                  r = json.loads(l)
+                  print(r["surface"], "| run", r["run_index"], "| chars", len(r["text"]), "| sources", len(r["sources"]), "| queries", len(r["search_queries"]), "| stop", r["finish_reason"], "| model", r["model"])
+          else:
+              print("no raw file produced")
+          PY
       - name: Commit results
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data docs
-          git commit -m "Weekly collection $(date -u +%F)" || echo "nothing to commit"
-          git push
+          git add data
+          git commit -m "Collection batch ${BATCH:-unknown}" || echo "nothing to commit"
+          git pull --rebase -q || true
+          git push || echo "push failed"

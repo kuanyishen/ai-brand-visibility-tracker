@@ -12,6 +12,7 @@ import argparse
 import json
 import threading
 import time
+import dataclasses
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
@@ -103,6 +104,18 @@ def run(study: Study, prompts: list[Prompt], out: Path, batch: str, *, workers: 
     return stats
 
 
+def select_surfaces(study: Study, ids: str | None) -> Study:
+    """Restrict the study to a comma-separated list of surface ids (None = all)."""
+    if not ids:
+        return study
+    wanted = [i.strip() for i in ids.split(",") if i.strip()]
+    known = {s.id for s in study.surfaces}
+    missing = [w for w in wanted if w not in known]
+    if missing:
+        raise SystemExit(f"unknown surface id(s) {missing}; available: {sorted(known)}")
+    return dataclasses.replace(study, surfaces=tuple(s for s in study.surfaces if s.id in wanted))
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--out", type=Path, default=None, help="JSONL file (default data/raw/<batch>.jsonl)")
@@ -110,9 +123,10 @@ def main() -> None:
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--rpm", type=float, default=30)
     ap.add_argument("--limit", type=int, default=None, help="only run the first N pending jobs (for testing)")
+    ap.add_argument("--surfaces", default=None, help="comma-separated surface ids to run (default: all in config/study.yaml)")
     a = ap.parse_args()
     out = a.out or Path("data/raw") / f"{a.batch}.jsonl"
-    stats = run(load_study(), load_prompts(), out, a.batch, workers=a.workers, rpm=a.rpm, limit=a.limit)
+    stats = run(select_surfaces(load_study(), a.surfaces), load_prompts(), out, a.batch, workers=a.workers, rpm=a.rpm, limit=a.limit or None)
     print(stats)
     raise SystemExit(1 if stats["failed"] else 0)
 
