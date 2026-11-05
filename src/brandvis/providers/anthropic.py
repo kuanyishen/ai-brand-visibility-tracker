@@ -29,6 +29,14 @@ def _domain(url: str) -> str:
     return urlparse(url).netloc.lower().removeprefix("www.")
 
 
+def read_key() -> str:
+    """The API key from the environment, with the whitespace and quotes that are easy to paste by accident removed."""
+    key = (os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("BRANDVIS_ANTHROPIC_KEY") or "").strip().strip("\"'").strip()
+    if not key:
+        raise ProviderError("no Anthropic API key: set ANTHROPIC_API_KEY (or BRANDVIS_ANTHROPIC_KEY)")
+    return key
+
+
 class AnthropicProvider:
     name = "anthropic"
 
@@ -36,10 +44,7 @@ class AnthropicProvider:
         self.model, self.timeout, self.max_retries = model, timeout, max_retries
 
     def _key(self) -> str:
-        key = os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("BRANDVIS_ANTHROPIC_KEY")
-        if not key:
-            raise ProviderError("no Anthropic API key: set ANTHROPIC_API_KEY (or BRANDVIS_ANTHROPIC_KEY)")
-        return key
+        return read_key()
 
     def _post(self, body: dict) -> dict:
         headers = {"content-type": "application/json", "anthropic-version": VERSION, "x-api-key": self._key()}

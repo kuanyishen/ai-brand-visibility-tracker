@@ -47,6 +47,9 @@ jobs:
         run: |
           [ -n "$ANTHROPIC_API_KEY" ] && echo "ANTHROPIC_API_KEY: set" || echo "ANTHROPIC_API_KEY: MISSING"
           [ -n "$GEMINI_API_KEY" ] && echo "GEMINI_API_KEY: set" || echo "GEMINI_API_KEY: MISSING"
+      - name: Check keys and models (free)
+        continue-on-error: true
+        run: python -m brandvis.check_keys
       - name: Collect
         run: |
           BATCH="${IN_BATCH:-$(date -u +%F)}"

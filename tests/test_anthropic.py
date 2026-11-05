@@ -124,3 +124,20 @@ def test_select_surfaces():
     assert select_surfaces(st, None) is st
     with pytest.raises(SystemExit):
         select_surfaces(st, "zzz")
+
+
+def test_key_is_cleaned_of_pasted_whitespace_and_quotes(monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", '  "sk-ant-abc123"\n ')
+    assert A.read_key() == "sk-ant-abc123"
+    calls = []
+    monkeypatch.setattr(A.urllib.request, "urlopen", lambda req, timeout=None: (calls.append(req.headers), ok(PLAIN))[1])
+    A.AnthropicProvider("m").generate("q")
+    assert calls[0]["X-api-key"] == "sk-ant-abc123"
+
+
+def test_check_keys_shape_never_reveals_the_key(monkeypatch):
+    from brandvis.check_keys import shape
+
+    monkeypatch.setenv("ANTHROPIC_API_KEY", " 'sk-ant-secretvalue...' ")
+    out = shape(A.read_key())
+    assert "secretvalue" not in out and "starts with sk-ant-" in out and "whitespace" in out and "'...'" in out
