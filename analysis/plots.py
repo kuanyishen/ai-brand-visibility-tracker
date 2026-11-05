@@ -139,7 +139,7 @@ def agreement(R, out):
     M = np.array([[R["agreement"]["jaccard"][a][b] for b in ss] for a in ss])
     fig, ax = plt.subplots(figsize=(6.4, 5.0))
     im = ax.imshow(M, cmap="Blues", vmin=0, vmax=max(0.8, M.max()))
-    ax.set_xticks(range(len(ss)), [R["labels"][s].replace(" + ", "\n+ ").replace("2.5 Flash", "2.5 Flash") for s in ss], fontsize=8.5)
+    ax.set_xticks(range(len(ss)), [R["labels"][s] for s in ss], fontsize=8.5, rotation=25, ha="right")
     ax.set_yticks(range(len(ss)), [R["labels"][s] for s in ss], fontsize=8.5)
     for i in range(len(ss)):
         for j in range(len(ss)):

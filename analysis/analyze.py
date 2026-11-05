@@ -116,7 +116,7 @@ def main(paths: list[Path], main_batch: str) -> dict:
     R["visibility"], R["focus_rank"] = {}, {}
     for s in surfaces:
         t = visibility_table(resp, pres, dic, brands, surface=s)
-        R["visibility"][s] = t.head(30).round(5).to_dict("records")
+        R["visibility"][s] = t.round(5).to_dict("records")
         order = t.sort_values("mention_rate", ascending=False).brand.tolist()
         R["focus_rank"][s] = {"by_mention_rate": order.index(focus) + 1, "by_share_of_voice": t.brand.tolist().index(focus) + 1,
                               "n_brands_seen": int((t.mention_rate > 0).sum())}
@@ -178,7 +178,13 @@ def main(paths: list[Path], main_batch: str) -> dict:
     by_s = {s: dd[dd.surface == s] for s in surfaces}
     agree = {a: {b: cross_jaccard(by_s[a], by_s[b], sets, same=(a == b)) for b in surfaces} for a in surfaces}
     vis = {s: pd.Series({r["brand"]: r["mention_rate"] for r in visibility_table(resp, pres, dic, brands, surface=s).to_dict("records")}) for s in surfaces}
-    rank_corr = {a: {b: float(spearmanr(vis[a], vis[b]).statistic) for b in surfaces} for a in surfaces}
+    def rank_corr(a: str, b: str) -> float:
+        """Spearman correlation of brand mention rates, matched BY BRAND, over brands mentioned on either surface."""
+        both = pd.concat([vis[a].rename("a"), vis[b].rename("b")], axis=1).fillna(0.0)
+        both = both[(both > 0).any(axis=1)]
+        return float(spearmanr(both["a"], both["b"]).statistic)
+
+    rank_corr = {a: {b: rank_corr(a, b) for b in surfaces} for a in surfaces}
     R["agreement"] = {"jaccard": agree, "spearman_mention_rates": rank_corr}
 
     # ---- day-to-day drift for surfaces present in more than one batch -------------------------------------------------------

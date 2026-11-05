@@ -75,3 +75,15 @@ def test_sentiment_and_agreement_and_sources():
     gr = resp.assign(grounded=True, sources=[["forbes.com", "www.forbes.com"], ["tiktok.com"]] + [[]] * 6)
     src = source_table(gr)
     assert src.iloc[0]["domain"] == "forbes.com" and src.iloc[0]["citations"] == 2 and src.iloc[0]["answers"] == 1
+
+
+def test_rank_correlation_must_match_brands_by_name():
+    """Regression test: two surfaces with opposite brand orders must not look perfectly correlated."""
+    import pandas as pd
+    from scipy.stats import spearmanr
+
+    a = pd.Series({"Zara": 0.9, "Uniqlo": 0.5, "Aritzia": 0.1}).rename("a")
+    b = pd.Series({"Aritzia": 0.9, "Uniqlo": 0.5, "Zara": 0.1}).rename("b")   # same brands, reversed popularity, listed in b's own order
+    positional = spearmanr(a.sort_values(ascending=False), b.sort_values(ascending=False)).statistic
+    matched = spearmanr(*[pd.concat([a, b], axis=1).fillna(0)[c] for c in ("a", "b")]).statistic
+    assert positional == 1.0 and matched == -1.0
